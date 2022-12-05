@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "main_cms_lambda.py", line 144, in <module>
+    qcd_test_sample = qrwf.predict_QR(lambda_discriminator, qcd_test_sample, inv_quant)
+  File "/home/bmaier/cms/CASE/dadrah/selection/qr_workflow.py", line 58, in predict_QR
+    selection = discriminator.select(sample)
+  File "/home/bmaier/cms/CASE/dadrah/selection/discriminator.py", line 188, in select
+    return self.loss_strategy(jet_sample) > loss_cut
+ValueError: operands could not be broadcast together with shapes (5285499,) (10570998,)

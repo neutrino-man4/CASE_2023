@@ -1,0 +1,50 @@
+import operator
+import numpy as np
+
+FEAT_NAMES = ['mJJ', 'j1Pt', 'j1Eta', 'j1Phi', 'j1M', 'j1E', 'j2Pt', 'j2M', 'j2E', 'DeltaEtaJJ', 'DeltaPhiJJ','mJJUpper']
+FEAT_IDX = dict(zip(FEAT_NAMES, range(len(FEAT_NAMES))))
+
+def filter_arrays_on_value(*arrays, filter_arr, filter_val, comp=operator.gt):
+    idx_after_cut = comp(filter_arr,filter_val)
+    #print('{0} events passed mass cut at {1}'.format(sum(idx_after_cut), filter_val))
+    return [a[idx_after_cut] for a in arrays] # a[multi_idx] = smart idx => data copied in result (unlike slicing)
+
+
+def mask_arrays(*arrays, mask):
+    return [a[mask] for a in arrays] # a[multi_idx] = smart idx => data copied in result (unlike slicing)
+
+
+def get_mask_for_cuts(features, **cuts):
+    ''' create mask for events based on jet-feature values '''
+
+    mask = np.ones(len(features), dtype=bool)
+    
+    for key, value in cuts.items():
+    
+        # | dEtaJJ | cuts into sideband and signalregion
+        if key == 'sideband':
+            mask *= np.abs(features[:, FEAT_IDX['DeltaEtaJJ']]) > value
+        elif key == 'signalregion':
+            mask *= np.abs(features[:, FEAT_IDX['DeltaEtaJJ']]) <= value
+        elif key == 'signalregionUpper':
+            mask *= np.abs(features[:, FEAT_IDX['mJJ']]) <= value
+    
+        # mJJ and jet-pt cuts
+        elif key == 'mJJ' or key == 'j1Pt' or key == 'j2Pt':
+            mask *= features[:, FEAT_IDX[key]] > value
+        # mJJ and jet-pt cuts
+        elif key == 'mJJUpper' or key == 'j1Pt' or key == 'j2Pt':
+            mask *= features[:, FEAT_IDX[key]] < value
+
+
+        # j1Pt > v OR j2Pt > v
+        elif key == 'jXPt':
+            mask *= (features[:, FEAT_IDX['j1Pt']] > value) + (features[:, FEAT_IDX['j2Pt']] > value)
+
+        # |jet-eta| cuts
+        elif key == 'j1Eta':
+            mask *= np.abs(features[:, FEAT_IDX[key]]) < value
+        elif key == 'j2Eta':
+            mask *= np.abs(features[:, FEAT_IDX['DeltaEtaJJ']] + features[:, FEAT_IDX['j1Eta']]) < value
+
+    return mask

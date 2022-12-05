@@ -1,0 +1,107 @@
+import pofah.util.experiment as ex
+import pofah.path_constants.sample_dict_file_parts_reco as sdfr 
+import pofah.util.sample_factory as sf
+import anpofah.model_analysis.roc_analysis as ra
+import anpofah.sample_analysis.sample_analysis as saan
+import dadrah.selection.loss_strategy as lost
+import anpofah.util.sample_names as samp
+import subprocess
+
+# setup analysis inputs
+do_analyses = ['roc', 'loss', 'roc_qcd_sb_vs_sr', 'loss_qcd_sb_vs_sr', 'loss_combi']
+# do_analyses = ['roc', 'loss']
+run_n = 70000
+fig_format = '.png'
+
+# loss strategies
+strategy_ids_total_loss = ['s5']
+strategy_ids_reco_kl_loss = ['rk5_05']
+
+strategy_ids_reco_loss = ['r5']
+strategy_ids_kl_loss = ['kl5']
+
+
+
+
+# set background sample to use
+BG_sample = samp.BG_SROrig_sample
+SIG_QStar_samples = samp.SIG_QStar_samples
+SIG_Graviton_samples = samp.SIG_Graviton_samples
+SIG_Wkk_samples = samp.SIG_Wkk_samples
+SIG_WpToBpT_samples = samp.SIG_WpToBpT_samples
+SIG_samples = samp.SIG_samples
+mass_centers = samp.mass_centers
+plot_name_suffix = BG_sample + '_vs_sig' 
+
+
+print(BG_sample)
+print(SIG_samples)
+
+#exit(1)
+
+# set up analysis outputs 
+experiment = ex.Experiment(run_n).setup(model_analysis_dir=True)
+paths = sf.SamplePathDirFactory(sdfr.path_dict).update_base_path({'$run$': experiment.run_dir})
+print('Running analysis on experiment {}, plotting results to {}'.format(run_n, experiment.model_analysis_dir))
+# read in data
+data = sf.read_inputs_to_jet_sample_dict_from_dir(samp.all_samples, paths)
+
+# *****************************************
+#					ROC
+# *****************************************
+if 'roc' in do_analyses:
+	# for each signal
+	for SIG_sample, mass_center in zip(SIG_samples, mass_centers):
+		# for each type of loss strategy
+		#for loss_ids, loss_name in zip([strategy_ids_kl_loss, strategy_ids_reco_loss, strategy_ids_reco_kl_loss, strategy_ids_total_loss], ['KL_loss', 'reco_loss', 'reco_kl_loss', 'total_loss']):
+		for loss_ids, loss_name in zip([strategy_ids_reco_kl_loss], ['reco_kl_loss']):
+			# plot full ROC
+			print(loss_ids)
+			print(loss_name)
+			subprocess.call("mkdir -p %s"%(experiment.model_analysis_dir_roc+"/incl/"),shell=True)
+			ra.plot_ROC_loss_strategy(data[BG_sample], data[SIG_sample], loss_ids, plot_name_suffix=plot_name_suffix+'_'+loss_name, fig_dir=experiment.model_analysis_dir_roc+"/incl/") 
+			# plot binned ROC
+			subprocess.call("mkdir -p %s"%(experiment.model_analysis_dir_roc+"/binned/"),shell=True)
+			ra.plot_binned_ROC_loss_strategy(data[BG_sample], data[SIG_sample], mass_center, loss_ids, plot_name_suffix=plot_name_suffix+'_'+loss_name, fig_dir=experiment.model_analysis_dir_roc+"/binned/")
+
+
+#if 'roc_qcd_mixed_vs_orig' in do_analyses:
+#	ra.plot_ROC_loss_strategy(data[samp.BG_SR_sample], data[samp.BG_SROrig_sample], strategy_ids_total_loss, plot_name_suffix=samp.BG_SR_sample + '_total_loss_mixed_vs_orig', fig_dir=experiment.model_analysis_dir_roc) 
+
+
+# *****************************************
+#			LOSS DISTRIBUTION
+# *****************************************
+if 'loss' in do_analyses:
+	# plot loss distribution for qcd sig vs signals
+	saan.analyze_feature(data, 'j1TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_QStar_samples, plot_name='loss_SR_QStar_TotalJ1_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	saan.analyze_feature(data, 'j2TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_QStar_samples, plot_name='loss_SR_QStar_TotalJ2_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	saan.analyze_feature(data, 'j1TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_Graviton_samples, plot_name='loss_SR_Graviton_TotalJ1_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	saan.analyze_feature(data, 'j2TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_Graviton_samples, plot_name='loss_SR_Graviton_TotalJ2_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	saan.analyze_feature(data, 'j1TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_Wkk_samples, plot_name='loss_SR_Wkk_TotalJ1_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	saan.analyze_feature(data, 'j2TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_Wkk_samples, plot_name='loss_SR_Wkk_TotalJ2_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	saan.analyze_feature(data, 'j1TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_WpToBpT_samples, plot_name='loss_SR_WpToBpT_TotalJ1_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	saan.analyze_feature(data, 'j2TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_WpToBpT_samples, plot_name='loss_SR_WpToBpT_TotalJ2_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	#saan.analyze_feature(data, 'j1KlLoss', sample_names=[samp.BG_SR_sample]+SIG_samples, plot_name='loss_SR_distr_KL1_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	#saan.analyze_feature(data, 'j2KlLoss', sample_names=[samp.BG_SR_sample]+SIG_samples, plot_name='loss_SR_distr_KL2_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+
+#if 'loss_qcd_mixed_vs_orig' in do_analyses:
+	# plot loss distribution for qcd side vs qcd signal region
+#	saan.analyze_feature(data, 'j1TotalLoss', sample_names=[samp.BG_SB_sample, samp.BG_SR_sample], plot_name='loss_distr_TotalJ1_qcdSB_vs_qcdSR', fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+#	saan.analyze_feature(data, 'j2TotalLoss', sample_names=[samp.BG_SB_sample, samp.BG_SR_sample], plot_name='loss_distr_TotalJ2_qcdSB_vs_qcdSR', fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+#	saan.analyze_feature(data, 'j1KlLoss', sample_names=[samp.BG_SB_sample, samp.BG_SR_sample], plot_name='loss_distr_KL1_qcdSB_vs_qcdSR', fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+#	saan.analyze_feature(data, 'j2KlLoss', sample_names=[samp.BG_SB_sample, samp.BG_SR_sample], plot_name='loss_distr_KL2_qcdSB_vs_qcdSR', fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+
+
+# *****************************************
+#			COMBINED LOSS DISTRIBUTION
+# *****************************************
+#if 'loss_combi' in do_analyses:
+#	loss_combi_ids = ['rk5_05']
+#	for loss_id in loss_combi_ids:
+#		loss_strategy = lost.loss_strategy_dict[loss_id]
+#		# plot loss distribution for qcd mixed vs qcd original
+#		saan.analyze_feature(data, loss_strategy.title_str, map_fun=loss_strategy, sample_names=[samp.BG_SR_sample, samp.BG_SROrig_sample], plot_name='loss_distr_'+loss_strategy.file_str+'_qcd_mixed_vs_orig', fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+
+
+

@@ -1,0 +1,408 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"read",
+				"read_jet_features_from_dir〔function〕"
+			],
+			[
+				"num",
+				"numpy\tabc"
+			],
+			[
+				"pr",
+				"print\t(main_predict.py)"
+			],
+			[
+				"da",
+				"dataset\tabc"
+			],
+			[
+				"img-local",
+				"img-local-54\t(sample_factory.py)"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "import h5py\nimport os\nimport numpy as np\nfrom glob import glob\nimport pandas as pd\n\nimport sarewt.util as ut\n\nclass DataReader():\n    '''\n        reads\n        - events (dijet constituents & dijet features)\n        - images\n        - results\n        from single files and directories\n    '''\n\n    def __init__(self, path):\n        self.path = path\n        self.jet_constituents_key = 'jetConstituentsList'\n        self.jet_features_key = 'eventFeatures'\n        self.dijet_feature_names = 'eventFeatureNames'\n        self.constituents_feature_names = 'particleFeatureNames'\n        self.mjj_cut = 1100.\n\n    def get_file_list(self):\n        flist = []\n        for path, _, _ in os.walk(self.path, followlinks=True):\n            if \"MAYBE_BROKEN\" in path:\n                continue\n            print('reading ', path)\n            flist += glob(path + '/' + '*.h5')\n        flist.sort()\n        return flist\n\n    def read_data_from_file(self, key, path=None):\n        if path is None:\n            path = self.path\n        with h5py.File(path,'r') as f:\n            return np.asarray(f.get(key))\n\n    def read_constituents_and_dijet_features_from_file(self,path):\n        with h5py.File(path,'r') as f:\n            features = np.array(f.get(self.jet_features_key))\n            constituents = np.array(f.get(self.jet_constituents_key))\n            return [constituents, features]\n\n\n    def read_events_from_dir(self, max_N=1e9):\n        '''\n        read dijet events (jet constituents & jet features) from files in directory\n        :param max_N: limit number of events\n        :return: concatenated jet constituents and jet feature array + corresponding particle feature names and event feature names\n        '''\n        print('reading', self.path)\n\n        constituents_concat = []\n        features_concat = []\n\n        flist = self.get_file_list()\n        print('num files in dir:', len(flist))\n\n        for i_file, fname in enumerate(flist):\n            try:\n                constituents, features = self.read_constituents_and_dijet_features_from_file(fname)\n                constituents, features = ut.filter_arrays_on_value(constituents, features, filter_arr=features[:, 0], filter_val=self.mjj_cut) # 0: mjj_idx\n                constituents_concat.extend(constituents)\n                features_concat.extend(features)\n            except OSError as e:\n                print(\"\\nCould not read file \", fname, ': ', repr(e))\n            except IndexError as e:\n                print(\"\\nNo data in file \", fname, ':', repr(e))\n            if len(constituents_concat) > max_N:\n                break\n\n        print('\\nnum files read in dir ', self.path, ': ', i_file + 1)\n\n        for i_file, fname in enumerate(flist):\n            try:\n                particle_feature_names = self.read_labels(self.constituents_feature_names, fname)\n                dijet_feature_names = self.read_labels(self.dijet_feature_names, fname)\n                break\n            except Exception as e:\n                print(\"\\nCould not read file \", fname, ': ', repr(e))\n\n        return [np.asarray(constituents_concat), particle_feature_names, np.asarray(features_concat), dijet_feature_names]\n\n\n    def read_jet_features_from_dir(self):\n\n        print('reading', self.path)\n\n        features_concat = []\n\n        flist = self.get_file_list()\n        print('num files in dir:', len(flist))\n\n        for i_file, fname in enumerate(flist):\n            try:\n                features = self.read_data_from_file(key=self.jet_features_key, path=fname)\n                features, = ut.filter_arrays_on_value(features, filter_arr=features[:, 0], filter_val=self.mjj_cut) # 0: mjj_idx # TODO: when filter() is passed only one array, has to be unpacked by caller as a, = filter() => need to change variadic *arrays argument!\n                features_concat.extend(features)\n            except OSError as e:\n                print(\"\\nCould not read file \", fname, ': ', repr(e))\n            except IndexError as e:\n                print(\"\\nNo data in file \", fname, ':', repr(e))\n\n        print('\\nnum files read in dir ', self.path, ': ', i_file + 1)\n        print('\\nnum events read in dir ', np.asarray(features_concat).shape[0])\n\n        for i_file, fname in enumerate(flist):\n            try:\n                dijet_feature_names = self.read_labels(self.dijet_feature_names, fname)\n                break\n            except Exception as e:\n                print(\"\\nCould not read file \", fname, ': ', repr(e))\n\n        return [np.asarray(features_concat), dijet_feature_names]\n\n\n    def read_jet_features_from_dir_to_df(self):\n        features, names = self.read_jet_features_from_dir()\n        return pd.DataFrame(features,columns=names)\n\n\n    def read_jet_constituents(self):\n        return self.read_data_from_file( self.jet_constituents_key )\n\n    def read_jet_features(self):\n        return self.read_data_from_file(self.jet_features_key)\n\n    def read_labels(self,key=None,path=None):\n        if key is None:\n            key = self.dijet_feature_names\n        if path is None:\n            path = self.path\n        return [ l.decode(\"utf-8\") for l in self.read_data_from_file( key, path ) ] # decode to unicode if (from byte str of Python2)\n",
+			"file": "data_reader.py",
+			"file_size": 5211,
+			"file_write_time": 132425009890000000,
+			"settings":
+			{
+				"buffer_size": 5211,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "",
+			"file": "__init__.py",
+			"file_size": 0,
+			"file_write_time": 132424954440000000,
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "import operator\n\ndef filter_arrays_on_value(*arrays, filter_arr, filter_val, comp=operator.gt):\n    idx_after_cut = comp(filter_arr,filter_val)\n    print('{0} events passed mass cut at {1}'.format(sum(idx_after_cut), filter_val))\n    return [a[idx_after_cut] for a in arrays]",
+			"file": "util.py",
+			"file_size": 275,
+			"file_write_time": 132356583400000000,
+			"settings":
+			{
+				"buffer_size": 275,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				],
+				[
+					"Packages/User/python3.sublime-build",
+					""
+				],
+				[
+					"Packages/User/python37.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/python3.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"side",
+				"View: Toggle Open Files in Side Bar"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/kinga/mnt5/sarewt"
+	],
+	"file_history":
+	[
+		"/home/kinga/mnt/tf_dataset_test.py",
+		"/home/kinga/mnt/util/utility_fun.py",
+		"/home/kinga/mnt/inout/event_to_image_converter.py",
+		"/home/kinga/mnt/main.py",
+		"/home/kinga/mnt/main_3d_vae.py",
+		"/home/kinga/mnt/main_train_3d_vae.py",
+		"/home/kinga/mnt/analysis_main/main_analysis_jet_features.py",
+		"/home/kinga/mnt/analysis_main/main_analysis_losses.py",
+		"/home/kinga/mnt/analysis_main/main_analysis_roc.py",
+		"/home/kinga/mnt/playground/test_sample_path_factory.py",
+		"/home/kinga/mnt/tests/test_event_sample_dump.py",
+		"/home/kinga/mnt/venv/lib/python3.6/site-packages/tensorboard/backend/application.py",
+		"/home/kinga/mnt/venv/lib/python3.6/site-packages/tensorboard/plugins/audio/audio_plugin.py",
+		"/home/kinga/mnt/venv/lib/python3.6/site-packages/tensorboard/plugins/core/core_plugin.py",
+		"/home/kinga/mnt/venv/lib/python3.6/site-packages/tensorboard/plugins/custom_scalar/custom_scalars_plugin.py",
+		"/home/kinga/mnt/main_analysis_model_comparison.py",
+		"/home/kinga/mnt/main_analysis_jet_features.py",
+		"/home/kinga/mnt/main_analysis.py",
+		"/home/kinga/mnt/main_predict_3d_vae.py",
+		"/home/kinga/mnt/main_predict.py",
+		"/home/kinga/mnt/vae/vae_prediction.py",
+		"/home/kinga/mnt/util/event_sample.py",
+		"/home/kinga/mnt/venv/lib/python3.6/site-packages/tensorboard/plugins/text/text_plugin.py",
+		"/home/kinga/mnt/venv/lib/python3.6/site-packages/tensorboard/plugins/scalar/scalars_plugin.py",
+		"/home/kinga/mnt/venv/lib/python3.6/site-packages/tensorboard/plugins/pr_curve/pr_curves_plugin.py",
+		"/home/kinga/mnt/venv/lib/python3.6/site-packages/tensorboard/plugins/image/images_plugin.py",
+		"/home/kinga/mnt/venv/lib/python3.6/site-packages/tensorboard/plugins/hparams/list_session_groups.py",
+		"/home/kinga/mnt/venv/lib/python3.6/site-packages/tensorboard/plugins/hparams/hparams_plugin.py",
+		"/home/kinga/mnt/venv/lib/python3.6/site-packages/tensorboard/plugins/hparams/get_experiment.py",
+		"/home/kinga/mnt/venv/lib/python3.6/site-packages/tensorboard/plugins/hparams/backend_context.py",
+		"/home/kinga/mnt/venv/lib/python3.6/site-packages/tensorboard/plugins/histogram/histograms_plugin.py",
+		"/home/kinga/mnt/venv/lib/python3.6/site-packages/tensorboard/plugins/graph/graphs_plugin.py",
+		"/home/kinga/mnt/venv/lib/python3.6/site-packages/tensorboard/plugins/distribution/distributions_plugin.py",
+		"/home/kinga/mnt/venv/lib/python3.6/site-packages/tensorboard/plugins/debugger_v2/debugger_v2_plugin.py",
+		"/home/kinga/mnt/inout/sample_factory.py",
+		"/home/kinga/mnt/analysis/analysis_roc.py",
+		"/home/kinga/mnt/analysis/analysis_losses.py"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "data_reader.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5211,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								291,
+								291
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"tabs_extra_last_activated": 1599475754.67,
+							"tabs_extra_last_activated_sheet_index": 0,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "__init__.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"open_with_edit": true,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tabs_extra_last_activated": 1598021861.51,
+							"tabs_extra_last_activated_sheet_index": 1
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "util.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 275,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tabs_extra_last_activated": 1598022925.28,
+							"tabs_extra_last_activated_sheet_index": 2
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 320.0
+	},
+	"output.find_results":
+	{
+		"height": 120.0
+	},
+	"pinned_build_system": "Packages/User/python3.sublime-build",
+	"project": "srwt.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 229.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,0 +1,1 @@
+python dijetfit.py --xsec 1 -M 3000 -i /eos/user/i/izoi/SWAN_projects/CASE/QR/run_50005/xsec_100/sig_WpToBpT_Wp3000_Bp400_Top170_ZbtReco/ --sig WpToBpT_Wp3000_Bp400_Top170_ZbtReco.h5 --qcd sig_MCOrig_QR_Reco.h5

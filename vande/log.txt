@@ -1,0 +1,202 @@
+### [25.10 7:41:38] Start of epoch 0
+Tensor("x_batch:0", shape=(128, 100, 3), dtype=float32)
+Tensor("x_batch:0", shape=(128, 100, 3), dtype=float32)
+Step 0: mean reco loss 678.9537, KL loss 2.0017 (in one batch)
+Seen so far: 512 samples
+Step 4000: mean reco loss 1.2243, KL loss 1.3018 (in one batch)
+Seen so far: 2048512 samples
+Step 8000: mean reco loss 0.9272, KL loss 1.1283 (in one batch)
+Seen so far: 4096512 samples
+Step 12000: mean reco loss 0.8590, KL loss 1.0700 (in one batch)
+Seen so far: 6144512 samples
+[DataGenerator]: __call__() yielded 1801823 samples
+### [Epoch 0 - 288.99 sec]: train loss reco 2.356 kl 1.328, val loss reco 0.720 kl 1.051 (mean / batch) ###
+
+### [25.10 7:46:27] Start of epoch 1
+Step 0: mean reco loss 0.6598, KL loss 1.0557 (in one batch)
+Seen so far: 512 samples
+Step 4000: mean reco loss 0.6997, KL loss 1.0091 (in one batch)
+Seen so far: 2048512 samples
+Step 8000: mean reco loss 0.6896, KL loss 1.0137 (in one batch)
+Seen so far: 4096512 samples
+Step 12000: mean reco loss 0.6632, KL loss 1.0434 (in one batch)
+Seen so far: 6144512 samples
+[DataGenerator]: __call__() yielded 1801823 samples
+### [Epoch 1 - 285.62 sec]: train loss reco 0.721 kl 1.039, val loss reco 0.667 kl 1.027 (mean / batch) ###
+
+### [25.10 7:51:13] Start of epoch 2
+Step 0: mean reco loss 0.5919, KL loss 1.0328 (in one batch)
+Seen so far: 512 samples
+Step 4000: mean reco loss 0.6609, KL loss 0.9945 (in one batch)
+Seen so far: 2048512 samples
+Step 8000: mean reco loss 0.5900, KL loss 1.0091 (in one batch)
+Seen so far: 4096512 samples
+Step 12000: mean reco loss 0.7550, KL loss 1.0522 (in one batch)
+Seen so far: 6144512 samples
+[DataGenerator]: __call__() yielded 1801823 samples
+### [Epoch 2 - 286.55 sec]: train loss reco 0.665 kl 1.034, val loss reco 0.593 kl 1.027 (mean / batch) ###
+
+### [25.10 7:55:59] Start of epoch 3
+Step 0: mean reco loss 0.5562, KL loss 1.0329 (in one batch)
+Seen so far: 512 samples
+Step 4000: mean reco loss 0.5534, KL loss 0.9999 (in one batch)
+Seen so far: 2048512 samples
+Step 8000: mean reco loss 0.5838, KL loss 1.0180 (in one batch)
+Seen so far: 4096512 samples
+Step 12000: mean reco loss 0.5869, KL loss 1.0287 (in one batch)
+Seen so far: 6144512 samples
+[DataGenerator]: __call__() yielded 1801823 samples
+### [Epoch 3 - 287.61 sec]: train loss reco 0.614 kl 1.032, val loss reco 0.609 kl 1.033 (mean / batch) ###
+
+### [25.10 8:0:47] Start of epoch 4
+Step 0: mean reco loss 0.5731, KL loss 1.0364 (in one batch)
+Seen so far: 512 samples
+Step 4000: mean reco loss 0.5715, KL loss 1.0020 (in one batch)
+Seen so far: 2048512 samples
+Step 8000: mean reco loss 0.5517, KL loss 1.0138 (in one batch)
+Seen so far: 4096512 samples
+Step 12000: mean reco loss 0.5587, KL loss 1.0363 (in one batch)
+Seen so far: 6144512 samples
+[DataGenerator]: __call__() yielded 1801823 samples
+### [Epoch 4 - 288.14 sec]: train loss reco 0.743 kl 1.094, val loss reco 0.597 kl 1.023 (mean / batch) ###
+------- Early stopping for last 3 validation losses [1.6201518, 1.6411602, 1.6197714]-------
+decreasing learning rate from 1.000e-03 to 3.000e-04
+
+### [25.10 8:5:35] Start of epoch 5
+Step 0: mean reco loss 0.5567, KL loss 1.0257 (in one batch)
+Seen so far: 512 samples
+Step 4000: mean reco loss 0.4872, KL loss 1.0092 (in one batch)
+Seen so far: 2048512 samples
+Step 8000: mean reco loss 0.4976, KL loss 1.0220 (in one batch)
+Seen so far: 4096512 samples
+Step 12000: mean reco loss 0.5384, KL loss 1.0239 (in one batch)
+Seen so far: 6144512 samples
+[DataGenerator]: __call__() yielded 1801823 samples
+### [Epoch 5 - 282.59 sec]: train loss reco 0.746 kl 1.091, val loss reco 0.564 kl 1.025 (mean / batch) ###
+saving best so far model with valid loss 0.564 and kl loss 1.025
+saving model to /data/t3home000/bmaier/CASE/VAE_models/run_201/best_so_far
+WARNING:tensorflow:Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+WARNING:tensorflow:Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+WARNING:tensorflow:Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+
+### [25.10 8:10:22] Start of epoch 6
+Step 0: mean reco loss 0.5731, KL loss 1.0231 (in one batch)
+Seen so far: 512 samples
+Step 4000: mean reco loss 0.6847, KL loss 1.0413 (in one batch)
+Seen so far: 2048512 samples
+Step 8000: mean reco loss 0.5874, KL loss 1.0153 (in one batch)
+Seen so far: 4096512 samples
+Step 12000: mean reco loss 0.6594, KL loss 1.1121 (in one batch)
+Seen so far: 6144512 samples
+[DataGenerator]: __call__() yielded 1801823 samples
+### [Epoch 6 - 283.21 sec]: train loss reco 190.372 kl 1.174, val loss reco 0.685 kl 1.075 (mean / batch) ###
+
+### [25.10 8:15:5] Start of epoch 7
+Step 0: mean reco loss 0.7083, KL loss 1.0722 (in one batch)
+Seen so far: 512 samples
+Step 4000: mean reco loss 0.5965, KL loss 1.0222 (in one batch)
+Seen so far: 2048512 samples
+Step 8000: mean reco loss 0.6399, KL loss 1.0242 (in one batch)
+Seen so far: 4096512 samples
+Step 12000: mean reco loss 0.5952, KL loss 1.0162 (in one batch)
+Seen so far: 6144512 samples
+[DataGenerator]: __call__() yielded 1801823 samples
+### [Epoch 7 - 288.50 sec]: train loss reco 0.647 kl 1.044, val loss reco 0.644 kl 1.030 (mean / batch) ###
+
+### [25.10 8:19:53] Start of epoch 8
+Step 0: mean reco loss 0.6500, KL loss 1.0263 (in one batch)
+Seen so far: 512 samples
+Step 4000: mean reco loss 0.5693, KL loss 0.9976 (in one batch)
+Seen so far: 2048512 samples
+Step 8000: mean reco loss 0.5838, KL loss 1.0172 (in one batch)
+Seen so far: 4096512 samples
+Step 12000: mean reco loss 0.9195, KL loss 1.5801 (in one batch)
+Seen so far: 6144512 samples
+[DataGenerator]: __call__() yielded 1801823 samples
+### [Epoch 8 - 293.36 sec]: train loss reco 1000488896.000 kl 8354254.500, val loss reco 0.874 kl 1.462 (mean / batch) ###
+
+### [25.10 8:24:47] Start of epoch 9
+Step 0: mean reco loss 0.8550, KL loss 1.4574 (in one batch)
+Seen so far: 512 samples
+Step 4000: mean reco loss 0.7444, KL loss 1.2152 (in one batch)
+Seen so far: 2048512 samples
+Step 8000: mean reco loss 0.7109, KL loss 1.1570 (in one batch)
+Seen so far: 4096512 samples
+Step 12000: mean reco loss 0.6780, KL loss 1.1431 (in one batch)
+Seen so far: 6144512 samples
+[DataGenerator]: __call__() yielded 1801823 samples
+### [Epoch 9 - 290.61 sec]: train loss reco 2.468 kl 1.239, val loss reco 0.696 kl 1.117 (mean / batch) ###
+
+### [25.10 8:29:37] Start of epoch 10
+Step 0: mean reco loss 0.6537, KL loss 1.1101 (in one batch)
+Seen so far: 512 samples
+Step 4000: mean reco loss 0.6400, KL loss 1.0341 (in one batch)
+Seen so far: 2048512 samples
+Step 8000: mean reco loss 0.6523, KL loss 1.0377 (in one batch)
+Seen so far: 4096512 samples
+Step 12000: mean reco loss 0.6387, KL loss 1.0176 (in one batch)
+Seen so far: 6144512 samples
+[DataGenerator]: __call__() yielded 1801823 samples
+### [Epoch 10 - 295.62 sec]: train loss reco 0.685 kl 1.057, val loss reco 0.653 kl 1.023 (mean / batch) ###
+
+### [25.10 8:34:33] Start of epoch 11
+Step 0: mean reco loss 0.6349, KL loss 1.0185 (in one batch)
+Seen so far: 512 samples
+Step 4000: mean reco loss 0.6194, KL loss 0.9856 (in one batch)
+Seen so far: 2048512 samples
+Step 8000: mean reco loss 0.6454, KL loss 1.0124 (in one batch)
+Seen so far: 4096512 samples
+Step 12000: mean reco loss 0.6487, KL loss 1.0263 (in one batch)
+Seen so far: 6144512 samples
+[DataGenerator]: __call__() yielded 1801823 samples
+### [Epoch 11 - 286.77 sec]: train loss reco 0.720 kl 1.033, val loss reco 0.626 kl 1.026 (mean / batch) ###
+
+### [25.10 8:39:20] Start of epoch 12
+Step 0: mean reco loss 0.5947, KL loss 1.0244 (in one batch)
+Seen so far: 512 samples
+Step 4000: mean reco loss 0.5795, KL loss 0.9881 (in one batch)
+Seen so far: 2048512 samples
+Step 8000: mean reco loss 0.5670, KL loss 1.0221 (in one batch)
+Seen so far: 4096512 samples
+Step 12000: mean reco loss 0.6557, KL loss 1.2149 (in one batch)
+Seen so far: 6144512 samples
+[DataGenerator]: __call__() yielded 1801823 samples
+### [Epoch 12 - 296.24 sec]: train loss reco 3798.273 kl 336.235, val loss reco 0.681 kl 1.116 (mean / batch) ###
+
+### [25.10 8:44:16] Start of epoch 13
+Step 0: mean reco loss 0.6356, KL loss 1.1185 (in one batch)
+Seen so far: 512 samples
+Step 4000: mean reco loss 0.6515, KL loss 1.0125 (in one batch)
+Seen so far: 2048512 samples
+Step 8000: mean reco loss 0.6244, KL loss 1.0208 (in one batch)
+Seen so far: 4096512 samples
+Step 12000: mean reco loss 0.6061, KL loss 1.0282 (in one batch)
+Seen so far: 6144512 samples
+[DataGenerator]: __call__() yielded 1801823 samples
+### [Epoch 13 - 297.61 sec]: train loss reco 0.671 kl 1.045, val loss reco 0.624 kl 1.028 (mean / batch) ###
+
+### [25.10 8:49:14] Start of epoch 14
+Step 0: mean reco loss 0.5729, KL loss 1.0284 (in one batch)
+Seen so far: 512 samples
+Step 4000: mean reco loss 0.5766, KL loss 0.9926 (in one batch)
+Seen so far: 2048512 samples
+Step 8000: mean reco loss 0.5898, KL loss 1.0126 (in one batch)
+Seen so far: 4096512 samples
+Step 12000: mean reco loss 0.6564, KL loss 1.0237 (in one batch)
+Seen so far: 6144512 samples
+[DataGenerator]: __call__() yielded 1801823 samples
+### [Epoch 14 - 284.98 sec]: train loss reco 0.748 kl 1.069, val loss reco 0.609 kl 1.015 (mean / batch) ###
+
+### [25.10 8:53:59] Start of epoch 15
+Step 0: mean reco loss 0.5984, KL loss 1.0109 (in one batch)
+Seen so far: 512 samples
+Step 4000: mean reco loss 0.5356, KL loss 0.9892 (in one batch)
+Seen so far: 2048512 samples
+Step 8000: mean reco loss 0.6217, KL loss 1.0000 (in one batch)
+Seen so far: 4096512 samples
+Step 12000: mean reco loss 0.6481, KL loss 1.0008 (in one batch)
+Seen so far: 6144512 samples
+[DataGenerator]: __call__() yielded 1801823 samples
+### [Epoch 15 - 281.39 sec]: train loss reco 0.617 kl 1.015, val loss reco 0.567 kl 1.013 (mean / batch) ###
+------- Early stopping for last 3 validation losses [1.651354, 1.6237577, 1.5794994]-------
+decreasing learning rate from 3.000e-04 to 9.000e-05
