@@ -2,9 +2,9 @@ import os
 
 path_dict = {
 
-        'base_dir_events' : '/data/t3home000/bmaier/CASE/',
-        'base_dir_images' : '/data/t3home000/bmaier/CASE/input/images',
-        'base_dir_results' : '/data/t3home000/bmaier/CASE/convolutional_VAE/results',
+        'base_dir_events' : '/work/bmaier/CASE/',
+        'base_dir_images' : '/work/abal/CASE/input/images',
+        'base_dir_results' : '/work/abal/CASE/convolutional_VAE/results',
 
         'base_dir_events_local' : 'data/events',
         'base_dir_images_local' : 'data/images',

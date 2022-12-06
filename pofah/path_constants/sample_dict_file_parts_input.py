@@ -4,7 +4,7 @@ import pofah.path_constants.sample_dict as sd
 path_dict = copy.deepcopy(sd.path_dict)
 
 update_dict = {
-	'base_dir' : '/data/t3home000/bmaier/CASE/',
+	'base_dir' : '/work/bmaier/CASE/',
 
 	'sample_dir' : {
 		'qcdSig': 'mixed_sig_qcd/test',

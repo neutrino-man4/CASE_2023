@@ -11,9 +11,9 @@ config = {
 
     'input_dir' : 'data/events',
     'fig_dir' : 'fig',
-    'result_dir' : '/data/t3home000/bmaier/CASE/VAE_results',
+    'result_dir' : '/work/abal/CASE/VAE_results',
     'tensorboard_dir' : 'tensorboard',
     'model_dir' : 'models',
-    'analysis_base_dir': '/data/t3home000/bmaier/CASE/VAE_results/bump_hunt_results',
-    'model_analysis_base_dir': '/data/t3home000/bmaier/CASE/VAE_results/model_analysis'
+    'analysis_base_dir': '/work/abal/CASE/VAE_results/bump_hunt_results',
+    'model_analysis_base_dir': '/work/abal/CASE/VAE_results/model_analysis'
 }

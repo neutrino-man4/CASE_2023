@@ -24,8 +24,17 @@ import training as tra
 import random 
 from loguru import logger
 import sys
+import argparse
 
-seed = int(sys.argv[1])
+parser = argparse.ArgumentParser()
+parser.add_argument("-b","--batchsize",type=int,default=1024,help="Set Batch Size")
+parser.add_argument("-s","--seed",type=int,default=12345,help="Set seed")
+args = parser.parse_args()
+
+
+BATCH_SIZE=args.batchsize
+
+seed = args.seed
 
 def set_seeds(seed):
     os.environ['PYTHONHASHSEED'] = str(seed)
@@ -49,7 +58,7 @@ params = Parameters(run_n=seed,
                     train_total_n=int(4e6),
                     valid_total_n=int(1e6), 
                     gen_part_n=int(1e6),
-                    batch_n=1024,
+                    batch_n=BATCH_SIZE,
                     z_sz=12,
                     activation='elu',
                     initializer='he_uniform',
