@@ -23,7 +23,7 @@ import sys
 #               runtime params
 # ********************************************************
 
-test_samples = ['QstarToQW_M_2000_mW_170',
+test_samples_Qstar_RS_W = ['QstarToQW_M_2000_mW_170',
                 'QstarToQW_M_2000_mW_25',
                 'QstarToQW_M_2000_mW_400',
                 'QstarToQW_M_2000_mW_80',
@@ -60,11 +60,11 @@ test_samples = ['QstarToQW_M_2000_mW_170',
                 'qcdSigTest',
                 'qcdSigMCOrig'
                             ]
+test_samples_MC_ORIG = ['qcdSigMCOrig']
 
 #test_samples = ['qcdSigQRTrain','qcdSigQRTest']
 #test_samples = ['qcdSigMCOrig']
-test_samples = [
-                'XToYYprimeTo4Q_MX2000_MY170_MYprime400_narrow',
+test_samples_X_TO_YY  = ['XToYYprimeTo4Q_MX2000_MY170_MYprime400_narrow',
                 'XToYYprimeTo4Q_MX2000_MY25_MYprime25_narrow',
                 'XToYYprimeTo4Q_MX2000_MY25_MYprime80_narrow',
                 'XToYYprimeTo4Q_MX2000_MY400_MYprime170_narrow',
@@ -76,7 +76,7 @@ test_samples = [
                 'XToYYprimeTo4Q_MX3000_MY170_MYprime170_narrow',
                 'XToYYprimeTo4Q_MX3000_MY170_MYprime25_narrow',
                 'XToYYprimeTo4Q_MX3000_MY25_MYprime25_narrow',
-#                'XToYYprimeTo4Q_MX3000_MY25_MYprime400_narrow',
+               'XToYYprimeTo4Q_MX3000_MY25_MYprime400_narrow',
                 'XToYYprimeTo4Q_MX3000_MY25_MYprime80_narrow',
                 'XToYYprimeTo4Q_MX3000_MY400_MYprime170_narrow',
                 'XToYYprimeTo4Q_MX3000_MY400_MYprime25_narrow',
@@ -103,12 +103,13 @@ test_samples = [
 #test_samples = ['qcdSig', 'GtoWW35na']
 #test_samples = ['qcdSideExt']
 #test_samples = ['gravitonSig']
+test_samples = test_samples_MC_ORIG + test_samples_Qstar_RS_W + test_samples_X_TO_YY
 
 run_n = int(sys.argv[1])
 cuts = cuts.sideband_cuts if 'qcdSideExt' in test_samples else cuts.signalregion_cuts #{}
 
 experiment = expe.Experiment(run_n=run_n).setup(model_dir=True)
-batch_n = 2048
+batch_n = 1024
 
 
 print(os.path.join(experiment.model_dir, 'best_so_far'))	

@@ -5,7 +5,7 @@ path_dict = copy.deepcopy(sd.path_dict)
 
 update_dict = {
 	
-        'base_dir' : '/work/bmaier/CASE/QR_results/events/run_$run$/sig_$sig_name$/xsec_$sig_xsec$/loss_$loss_strat$',
+        'base_dir' : '/work/abal/CASE/QR_results/events/run_$run$/sig_$sig_name$/xsec_$sig_xsec$/loss_$loss_strat$',
 
         # no sample directory, as all events of a data sample merged into single file
         'sample_dir' : {

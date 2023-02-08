@@ -9,9 +9,10 @@ import subprocess
 import h5py
 
 # setup analysis inputs
-do_analyses = ['roc', 'loss', 'roc_qcd_sb_vs_sr', 'loss_qcd_sb_vs_sr', 'loss_combi']
+#do_analyses = ['roc', 'loss', 'roc_qcd_sb_vs_sr', 'loss_qcd_sb_vs_sr', 'loss_combi']
+do_analyses = ['roc', 'roc_qcd_sb_vs_sr','loss']
 # do_analyses = ['roc', 'loss']
-run_n = 50000
+run_n = 98765
 fig_format = '.png'
 
 # loss strategies
@@ -34,8 +35,11 @@ mass_centers = samp.mass_centers
 plot_name_suffix = BG_sample + '_vs_sig' 
 
 
-SIG_samples = ['XToYYprimeTo4Q_MX3000_MY80_MYprime170_narrowReco']
-mass_centers = [3000]
+SIG_samples = ['XToYYprimeTo4Q_MX3000_MY80_MYprime170_narrowReco',\
+	#'XToYYprimeTo4Q_MX3000_MY170_MYprime25_narrowReco',\
+     #           'XToYYprimeTo4Q_MX3000_MY25_MYprime25_narrowReco'
+	]
+mass_centers = [3000]*len(SIG_samples)
 
 #SIG_samples = SIG_samples[:2]
 
@@ -63,6 +67,7 @@ if 'roc' in do_analyses:
 			# plot full ROC
 			print(loss_ids)
 			print(loss_name)
+			print(SIG_sample)
 			subprocess.call("mkdir -p %s"%(experiment.model_analysis_dir_roc+"/incl/"),shell=True)
 			ra.plot_ROC_loss_strategy(data[BG_sample], data[SIG_sample], loss_ids, plot_name_suffix=plot_name_suffix+'_'+loss_name, fig_dir=experiment.model_analysis_dir_roc+"/incl/") 
 			# plot binned ROC

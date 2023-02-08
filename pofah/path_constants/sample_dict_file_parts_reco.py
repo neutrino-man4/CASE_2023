@@ -6,7 +6,7 @@ path_dict = copy.deepcopy(sd.path_dict)
 
 update_dict = {
 	
-        'base_dir' : '/work/bmaier/CASE/VAE_results/events/$run$',
+        'base_dir' : '/storage/9/abal/CASE/VAE_results/events/$run$',
 
 	'sample_dir' : {
                 'qcdSideReco': 'qcd_sideband',

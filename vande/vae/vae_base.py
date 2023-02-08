@@ -8,7 +8,7 @@ import tensorflow as tf
 from collections import namedtuple
 
 import vae.losses as losses
-
+import numpy as np
 
 
 class VAE(ABC):

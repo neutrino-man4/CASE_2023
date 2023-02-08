@@ -63,9 +63,9 @@ path_dict = {
                 'QstarToQW_M_5000_mW_170Reco':'QstarToQW_M_5000_mW_170 reco',
                 'QstarToQW_M_5000_mW_25':'QstarToQW_M_5000_mW_25',
                 'QstarToQW_M_5000_mW_25Reco':'QstarToQW_M_5000_mW_25 reco',
-                'QstarToQW_M_5000_mW_400':'QstarToQW_M_3000_mW_400',
-                'QstarToQW_M_5000_mW_400Reco':'QstarToQW_M_3000_mW_400 reco',
-                'QstarToQW_M_5000_mW_80':'QstarToQW_M_3000_mW_80',
+                'QstarToQW_M_5000_mW_400':'QstarToQW_M_3000_mW_400',   #SOMETHING WRONG? CLARIFY
+                'QstarToQW_M_5000_mW_400Reco':'QstarToQW_M_3000_mW_400 reco', ### SAME
+                'QstarToQW_M_5000_mW_80':'QstarToQW_M_3000_mW_80', ### SAME
                 'QstarToQW_M_5000_mW_80Reco':'QstarToQW_M_3000_mW_80 reco',
             'RSGravitonToGluonGluon_kMpl01_M_1000':'RSGravitonToGluonGluon_kMpl01_M_1000',
             'RSGravitonToGluonGluon_kMpl01_M_1000Reco':'RSGravitonToGluonGluon_kMpl01_M_1000 reco',

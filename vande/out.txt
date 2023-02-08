@@ -1,0 +1,494 @@
+/work/abal/neural_networks/miniconda/envs/tf-gpu/lib/python3.9/site-packages/tensorflow/python/data/ops/dataset_ops.py:3503: UserWarning: Even though the tf.config.experimental_run_functions_eagerly option is set, this option does not apply to tf.data functions. tf.data functions are still traced and executed as graphs.
+  warnings.warn(
+WARNING:tensorflow:AutoGraph could not transform <bound method Sampling.call of <vae.layers.Sampling object at 0x7ffb0c6ac5b0>> and will run it as-is.
+Please report this to the TensorFlow team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output.
+Cause: module 'gast' has no attribute 'Index'
+To silence this warning, decorate the function with @tf.autograph.experimental.do_not_convert
+tensorflow version:  2.4.1
+>>> Preparing training dataset generator
+YES!
+>>> Preparing validation dataset
+YES!
+/work/bmaier/CASE/run2_mixed_MC_sig_bkg/test
+YES!
+37368
+75418
+112937
+150494
+188195
+225618
+263096
+300999
+338576
+376405
+414312
+451973
+489477
+527178
+564745
+602350
+639853
+677536
+715398
+752851
+790493
+828276
+865899
+903586
+941139
+978979
+1016488
+37793
+computed mean [ 0.00206598 -0.00773981  0.09285183] and std-dev [22.795738 22.926617 35.656055]
+Printing mean and stdev
+(array([ 0.00206598, -0.00773981,  0.09285183], dtype=float32), array([22.795738, 22.926617, 35.656055], dtype=float32))
+wow
+>>> Preparing optimizer
+>>> Building model
+Normalizingggggg with mean
+[ 0.00206598 -0.00773981  0.09285183]
+2022-12-16 13:05:42.489 | DEBUG    | training:train:154 - Saving model to /work/abal/CASE/VAE_models/run_12345
+2022-12-16 13:23:12.977 | DEBUG    | training:train:170 - ### [Epoch 0 - 1050.49 sec]: train loss reco 174.490 kl 3.553, val loss reco 44.068 kl 3.473 (mean / batch) ###
+2022-12-16 13:40:20.078 | DEBUG    | training:train:170 - ### [Epoch 1 - 1027.08 sec]: train loss reco 27.442 kl 3.303, val loss reco 25.643 kl 3.153 (mean / batch) ###
+2022-12-16 13:57:30.223 | DEBUG    | training:train:170 - ### [Epoch 2 - 1030.13 sec]: train loss reco 19.117 kl 3.014, val loss reco 18.547 kl 2.892 (mean / batch) ###
+2022-12-16 14:14:26.373 | DEBUG    | training:train:170 - ### [Epoch 3 - 1016.13 sec]: train loss reco 15.199 kl 2.856, val loss reco 14.008 kl 2.837 (mean / batch) ###
+2022-12-16 14:30:31.118 | DEBUG    | training:train:170 - ### [Epoch 4 - 964.73 sec]: train loss reco 11.790 kl 2.792, val loss reco 11.996 kl 2.754 (mean / batch) ###
+2022-12-16 14:45:57.226 | DEBUG    | training:train:170 - ### [Epoch 5 - 926.10 sec]: train loss reco 11.211 kl 2.721, val loss reco 10.230 kl 2.695 (mean / batch) ###
+2022-12-16 15:01:19.748 | DEBUG    | training:train:170 - ### [Epoch 6 - 922.38 sec]: train loss reco 10.083 kl 2.666, val loss reco 13.031 kl 2.640 (mean / batch) ###
+2022-12-16 15:16:59.174 | DEBUG    | training:train:170 - ### [Epoch 7 - 939.42 sec]: train loss reco 11.352 kl 2.683, val loss reco 9.460 kl 2.678 (mean / batch) ###
+2022-12-16 15:32:14.369 | DEBUG    | training:train:170 - ### [Epoch 8 - 915.06 sec]: train loss reco 13.186 kl 2.819, val loss reco 7.492 kl 2.799 (mean / batch) ###
+2022-12-16 15:47:41.575 | DEBUG    | training:train:170 - ### [Epoch 9 - 927.07 sec]: train loss reco 7.100 kl 2.638, val loss reco 6.258 kl 2.535 (mean / batch) ###
+2022-12-16 16:03:24.457 | DEBUG    | training:train:170 - ### [Epoch 10 - 942.75 sec]: train loss reco 6.336 kl 2.475, val loss reco 5.559 kl 2.419 (mean / batch) ###
+2022-12-16 16:19:03.070 | DEBUG    | training:train:170 - ### [Epoch 11 - 938.38 sec]: train loss reco 5.918 kl 2.396, val loss reco 5.232 kl 2.370 (mean / batch) ###
+2022-12-16 16:34:53.260 | DEBUG    | training:train:170 - ### [Epoch 12 - 950.05 sec]: train loss reco 5.637 kl 2.350, val loss reco 5.274 kl 2.334 (mean / batch) ###
+2022-12-16 16:50:46.380 | DEBUG    | training:train:170 - ### [Epoch 13 - 953.11 sec]: train loss reco 5.426 kl 2.319, val loss reco 4.839 kl 2.310 (mean / batch) ###
+2022-12-16 17:06:31.258 | DEBUG    | training:train:170 - ### [Epoch 14 - 944.69 sec]: train loss reco 5.241 kl 2.296, val loss reco 4.732 kl 2.288 (mean / batch) ###
+2022-12-16 17:22:15.757 | DEBUG    | training:train:170 - ### [Epoch 15 - 944.36 sec]: train loss reco 5.046 kl 2.278, val loss reco 4.803 kl 2.270 (mean / batch) ###
+2022-12-16 17:37:54.225 | DEBUG    | training:train:170 - ### [Epoch 16 - 938.46 sec]: train loss reco 4.054 kl 2.270, val loss reco 4.087 kl 2.263 (mean / batch) ###
+2022-12-16 17:53:47.036 | DEBUG    | training:train:170 - ### [Epoch 17 - 952.67 sec]: train loss reco 4.027 kl 2.258, val loss reco 4.032 kl 2.245 (mean / batch) ###
+2022-12-16 18:09:50.525 | DEBUG    | training:train:170 - ### [Epoch 18 - 963.34 sec]: train loss reco 3.926 kl 2.247, val loss reco 3.919 kl 2.242 (mean / batch) ###
+2022-12-16 18:25:53.613 | DEBUG    | training:train:170 - ### [Epoch 19 - 962.72 sec]: train loss reco 3.692 kl 2.243, val loss reco 3.714 kl 2.239 (mean / batch) ###
+2022-12-16 18:42:10.651 | DEBUG    | training:train:170 - ### [Epoch 20 - 976.90 sec]: train loss reco 3.658 kl 2.239, val loss reco 3.676 kl 2.234 (mean / batch) ###
+2022-12-16 18:58:27.749 | DEBUG    | training:train:170 - ### [Epoch 21 - 976.96 sec]: train loss reco 3.613 kl 2.235, val loss reco 3.636 kl 2.228 (mean / batch) ###
+2022-12-16 19:14:42.811 | DEBUG    | training:train:170 - ### [Epoch 22 - 974.92 sec]: train loss reco 3.538 kl 2.232, val loss reco 3.583 kl 2.229 (mean / batch) ###
+2022-12-16 19:30:52.703 | DEBUG    | training:train:170 - ### [Epoch 23 - 969.73 sec]: train loss reco 3.524 kl 2.231, val loss reco 3.567 kl 2.228 (mean / batch) ###
+2022-12-16 19:47:09.279 | DEBUG    | training:train:170 - ### [Epoch 24 - 976.41 sec]: train loss reco 3.507 kl 2.229, val loss reco 3.553 kl 2.225 (mean / batch) ###
+2022-12-16 20:03:42.513 | DEBUG    | training:train:170 - ### [Epoch 25 - 993.09 sec]: train loss reco 3.480 kl 2.228, val loss reco 3.531 kl 2.225 (mean / batch) ###
+2022-12-16 20:20:08.127 | DEBUG    | training:train:170 - ### [Epoch 26 - 985.45 sec]: train loss reco 3.475 kl 2.228, val loss reco 3.528 kl 2.224 (mean / batch) ###
+2022-12-16 20:36:23.421 | DEBUG    | training:train:170 - ### [Epoch 27 - 975.11 sec]: train loss reco 3.469 kl 2.227, val loss reco 3.520 kl 2.224 (mean / batch) ###
+2022-12-16 20:52:46.712 | DEBUG    | training:train:170 - ### [Epoch 28 - 983.14 sec]: train loss reco 3.459 kl 2.226, val loss reco 3.513 kl 2.224 (mean / batch) ###
+2022-12-16 21:09:02.649 | DEBUG    | training:train:170 - ### [Epoch 29 - 975.62 sec]: train loss reco 3.457 kl 2.226, val loss reco 3.511 kl 2.223 (mean / batch) ###
+2022-12-16 21:25:23.490 | DEBUG    | training:train:170 - ### [Epoch 30 - 980.69 sec]: train loss reco 3.455 kl 2.226, val loss reco 3.508 kl 2.223 (mean / batch) ###
+2022-12-16 21:41:26.107 | DEBUG    | training:train:170 - ### [Epoch 31 - 962.46 sec]: train loss reco 3.452 kl 2.225, val loss reco 3.507 kl 2.223 (mean / batch) ###
+2022-12-16 21:57:27.560 | DEBUG    | training:train:170 - ### [Epoch 32 - 961.32 sec]: train loss reco 3.452 kl 2.225, val loss reco 3.506 kl 2.223 (mean / batch) ###
+2022-12-16 22:13:39.951 | DEBUG    | training:train:170 - ### [Epoch 33 - 972.24 sec]: train loss reco 3.451 kl 2.225, val loss reco 3.506 kl 2.222 (mean / batch) ###
+2022-12-16 22:29:42.055 | DEBUG    | training:train:170 - ### [Epoch 34 - 961.96 sec]: train loss reco 3.450 kl 2.225, val loss reco 3.505 kl 2.222 (mean / batch) ###
+2022-12-16 22:45:41.860 | DEBUG    | training:train:170 - ### [Epoch 35 - 959.67 sec]: train loss reco 3.449 kl 2.225, val loss reco 3.505 kl 2.222 (mean / batch) ###
+2022-12-16 23:01:47.299 | DEBUG    | training:train:170 - ### [Epoch 36 - 965.30 sec]: train loss reco 3.449 kl 2.225, val loss reco 3.505 kl 2.222 (mean / batch) ###
+2022-12-16 23:17:54.187 | DEBUG    | training:train:170 - ### [Epoch 37 - 966.74 sec]: train loss reco 3.449 kl 2.225, val loss reco 3.503 kl 2.222 (mean / batch) ###
+2022-12-16 23:33:50.935 | DEBUG    | training:train:170 - ### [Epoch 38 - 956.60 sec]: train loss reco 3.449 kl 2.225, val loss reco 3.504 kl 2.222 (mean / batch) ###
+2022-12-16 23:50:00.252 | DEBUG    | training:train:170 - ### [Epoch 39 - 969.31 sec]: train loss reco 3.449 kl 2.225, val loss reco 3.504 kl 2.222 (mean / batch) ###
+Model: "encoder"
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+encoder_input (InputLayer)      [(None, 100, 3)]     0                                            
+__________________________________________________________________________________________________
+Std_Normalize (StdNormalization (None, 100, 3)       0           encoder_input[0][0]              
+__________________________________________________________________________________________________
+lambda (Lambda)                 (None, 100, 3, 1)    0           Std_Normalize[0][0]              
+__________________________________________________________________________________________________
+conv2d (Conv2D)                 (None, 100, 1, 12)   48          lambda[0][0]                     
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 100, 12)      0           conv2d[0][0]                     
+__________________________________________________________________________________________________
+conv1d (Conv1D)                 (None, 98, 16)       592         lambda_1[0][0]                   
+__________________________________________________________________________________________________
+conv1d_1 (Conv1D)               (None, 96, 20)       980         conv1d[0][0]                     
+__________________________________________________________________________________________________
+average_pooling1d (AveragePooli (None, 48, 20)       0           conv1d_1[0][0]                   
+__________________________________________________________________________________________________
+flatten (Flatten)               (None, 960)          0           average_pooling1d[0][0]          
+__________________________________________________________________________________________________
+dense (Dense)                   (None, 204)          196044      flatten[0][0]                    
+__________________________________________________________________________________________________
+dense_1 (Dense)                 (None, 48)           9840        dense[0][0]                      
+__________________________________________________________________________________________________
+z_mean (Dense)                  (None, 12)           588         dense_1[0][0]                    
+__________________________________________________________________________________________________
+z_log_var (Dense)               (None, 12)           588         dense_1[0][0]                    
+__________________________________________________________________________________________________
+sampling (Sampling)             (None, 12)           0           z_mean[0][0]                     
+                                                                 z_log_var[0][0]                  
+==================================================================================================
+Total params: 208,680
+Trainable params: 208,680
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Model: "decoder"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+z_sampling (InputLayer)      [(None, 12)]              0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 48)                624       
+_________________________________________________________________
+dense_3 (Dense)              (None, 204)               9996      
+_________________________________________________________________
+dense_4 (Dense)              (None, 960)               196800    
+_________________________________________________________________
+reshape (Reshape)            (None, 48, 20)            0         
+_________________________________________________________________
+up_sampling1d (UpSampling1D) (None, 96, 20)            0         
+_________________________________________________________________
+conv1d_transpose (Conv1DTran (None, 98, 16)            976       
+_________________________________________________________________
+conv1d_transpose_1 (Conv1DTr (None, 100, 12)           588       
+_________________________________________________________________
+lambda_6 (Lambda)            (None, 100, 1, 12)        0         
+_________________________________________________________________
+conv_2d_transpose (Conv2DTra (None, 100, 3, 1)         37        
+_________________________________________________________________
+lambda_7 (Lambda)            (None, 100, 3)            0         
+_________________________________________________________________
+Un_Normalize (StdUnnormaliza (None, 100, 3)            0         
+=================================================================
+Total params: 209,021
+Trainable params: 209,021
+Non-trainable params: 0
+_________________________________________________________________
+Model: "vae"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+model_input (InputLayer)     [(None, 100, 3)]          0         
+_________________________________________________________________
+encoder (Functional)         [(None, 12), (None, 12),  208680    
+_________________________________________________________________
+decoder (Functional)         (None, 100, 3)            209021    
+=================================================================
+Total params: 417,701
+Trainable params: 417,701
+Non-trainable params: 0
+_________________________________________________________________
+>>> Launching Training
+Saving model to /work/abal/CASE/VAE_models/run_12345
+
+### [16.12 13:5:42] Start of epoch 0
+Step 0: mean reco loss 6446.1582, KL loss 0.3039, Regul loss 3136.7920 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 0 - 1050.49 sec]: train loss reco 174.490 kl 3.553, val loss reco 44.068 kl 3.473 (mean / batch) ###
+
+### [16.12 13:23:12] Start of epoch 1
+Step 0: mean reco loss 42.8222, KL loss 3.4441, Regul loss 2406.8198 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 1 - 1027.10 sec]: train loss reco 27.442 kl 3.303, val loss reco 25.643 kl 3.153 (mean / batch) ###
+
+### [16.12 13:40:20] Start of epoch 2
+Step 0: mean reco loss 24.7431, KL loss 3.1487, Regul loss 1686.7242 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 2 - 1030.14 sec]: train loss reco 19.117 kl 3.014, val loss reco 18.547 kl 2.892 (mean / batch) ###
+
+### [16.12 13:57:30] Start of epoch 3
+Step 0: mean reco loss 16.9817, KL loss 2.8892, Regul loss 1311.9594 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 3 - 1016.15 sec]: train loss reco 15.199 kl 2.856, val loss reco 14.008 kl 2.837 (mean / batch) ###
+
+### [16.12 14:14:26] Start of epoch 4
+Step 0: mean reco loss 14.2275, KL loss 2.8322, Regul loss 1123.2363 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 4 - 964.74 sec]: train loss reco 11.790 kl 2.792, val loss reco 11.996 kl 2.754 (mean / batch) ###
+
+### [16.12 14:30:31] Start of epoch 5
+Step 0: mean reco loss 10.9706, KL loss 2.7440, Regul loss 1002.7317 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 5 - 926.11 sec]: train loss reco 11.211 kl 2.721, val loss reco 10.230 kl 2.695 (mean / batch) ###
+saving best so far model with valid loss 10.230 and kl loss 2.695
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 14:45:57] Start of epoch 6
+Step 0: mean reco loss 10.0220, KL loss 2.6845, Regul loss 922.4811 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 6 - 922.39 sec]: train loss reco 10.083 kl 2.666, val loss reco 13.031 kl 2.640 (mean / batch) ###
+
+### [16.12 15:1:19] Start of epoch 7
+Step 0: mean reco loss 11.6382, KL loss 2.6420, Regul loss 856.2070 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 7 - 939.43 sec]: train loss reco 11.352 kl 2.683, val loss reco 9.460 kl 2.678 (mean / batch) ###
+saving best so far model with valid loss 9.460 and kl loss 2.678
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 15:16:59] Start of epoch 8
+Step 0: mean reco loss 9.7464, KL loss 2.6642, Regul loss 822.6135 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 8 - 915.07 sec]: train loss reco 13.186 kl 2.819, val loss reco 7.492 kl 2.799 (mean / batch) ###
+saving best so far model with valid loss 7.492 and kl loss 2.799
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 15:32:14] Start of epoch 9
+Step 0: mean reco loss 7.0771, KL loss 2.7947, Regul loss 784.4729 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 9 - 927.08 sec]: train loss reco 7.100 kl 2.638, val loss reco 6.258 kl 2.535 (mean / batch) ###
+saving best so far model with valid loss 6.258 and kl loss 2.535
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 15:47:41] Start of epoch 10
+Step 0: mean reco loss 5.9363, KL loss 2.5347, Regul loss 678.5076 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 10 - 942.76 sec]: train loss reco 6.336 kl 2.475, val loss reco 5.559 kl 2.419 (mean / batch) ###
+saving best so far model with valid loss 5.559 and kl loss 2.419
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 16:3:24] Start of epoch 11
+Step 0: mean reco loss 5.3373, KL loss 2.4199, Regul loss 601.8892 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 11 - 938.39 sec]: train loss reco 5.918 kl 2.396, val loss reco 5.232 kl 2.370 (mean / batch) ###
+saving best so far model with valid loss 5.232 and kl loss 2.370
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 16:19:3] Start of epoch 12
+Step 0: mean reco loss 5.0281, KL loss 2.3711, Regul loss 547.3257 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 12 - 950.06 sec]: train loss reco 5.637 kl 2.350, val loss reco 5.274 kl 2.334 (mean / batch) ###
+
+### [16.12 16:34:53] Start of epoch 13
+Step 0: mean reco loss 5.0626, KL loss 2.3349, Regul loss 508.3993 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 13 - 953.12 sec]: train loss reco 5.426 kl 2.319, val loss reco 4.839 kl 2.310 (mean / batch) ###
+saving best so far model with valid loss 4.839 and kl loss 2.310
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 16:50:46] Start of epoch 14
+Step 0: mean reco loss 4.6320, KL loss 2.3108, Regul loss 479.3896 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 14 - 944.70 sec]: train loss reco 5.241 kl 2.296, val loss reco 4.732 kl 2.288 (mean / batch) ###
+saving best so far model with valid loss 4.732 and kl loss 2.288
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 17:6:31] Start of epoch 15
+Step 0: mean reco loss 4.5760, KL loss 2.2885, Regul loss 454.9131 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 15 - 944.37 sec]: train loss reco 5.046 kl 2.278, val loss reco 4.803 kl 2.270 (mean / batch) ###
+------- Early stopping for last 3 validation losses [7.149013, 7.0206714, 7.0729055]-------
+decreasing learning rate from 1.000e-03 to 3.000e-04
+
+### [16.12 17:22:15] Start of epoch 16
+Step 0: mean reco loss 4.6954, KL loss 2.2699, Regul loss 435.0410 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 16 - 938.47 sec]: train loss reco 4.054 kl 2.270, val loss reco 4.087 kl 2.263 (mean / batch) ###
+saving best so far model with valid loss 4.087 and kl loss 2.263
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 17:37:54] Start of epoch 17
+Step 0: mean reco loss 3.9980, KL loss 2.2633, Regul loss 425.3603 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 17 - 952.68 sec]: train loss reco 4.027 kl 2.258, val loss reco 4.032 kl 2.245 (mean / batch) ###
+saving best so far model with valid loss 4.032 and kl loss 2.245
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 17:53:47] Start of epoch 18
+Step 0: mean reco loss 3.9906, KL loss 2.2449, Regul loss 414.3889 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 18 - 963.36 sec]: train loss reco 3.926 kl 2.247, val loss reco 3.919 kl 2.242 (mean / batch) ###
+------- Early stopping for last 3 validation losses [6.350116, 6.277205, 6.1608744]-------
+decreasing learning rate from 3.000e-04 to 9.000e-05
+saving best so far model with valid loss 3.919 and kl loss 2.242
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 18:9:50] Start of epoch 19
+Step 0: mean reco loss 3.9146, KL loss 2.2413, Regul loss 404.8191 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 19 - 962.73 sec]: train loss reco 3.692 kl 2.243, val loss reco 3.714 kl 2.239 (mean / batch) ###
+saving best so far model with valid loss 3.714 and kl loss 2.239
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 18:25:53] Start of epoch 20
+Step 0: mean reco loss 3.6772, KL loss 2.2388, Regul loss 400.8306 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 20 - 976.91 sec]: train loss reco 3.658 kl 2.239, val loss reco 3.676 kl 2.234 (mean / batch) ###
+saving best so far model with valid loss 3.676 and kl loss 2.234
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 18:42:10] Start of epoch 21
+Step 0: mean reco loss 3.6596, KL loss 2.2335, Regul loss 396.1049 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 21 - 976.97 sec]: train loss reco 3.613 kl 2.235, val loss reco 3.636 kl 2.228 (mean / batch) ###
+------- Early stopping for last 3 validation losses [5.9528084, 5.9103155, 5.8645287]-------
+decreasing learning rate from 9.000e-05 to 2.700e-05
+saving best so far model with valid loss 3.636 and kl loss 2.228
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 18:58:27] Start of epoch 22
+Step 0: mean reco loss 3.6298, KL loss 2.2276, Regul loss 391.4094 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 22 - 974.93 sec]: train loss reco 3.538 kl 2.232, val loss reco 3.583 kl 2.229 (mean / batch) ###
+saving best so far model with valid loss 3.583 and kl loss 2.229
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 19:14:42] Start of epoch 23
+Step 0: mean reco loss 3.5485, KL loss 2.2288, Regul loss 389.6455 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 23 - 969.74 sec]: train loss reco 3.524 kl 2.231, val loss reco 3.567 kl 2.228 (mean / batch) ###
+saving best so far model with valid loss 3.567 and kl loss 2.228
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 19:30:52] Start of epoch 24
+Step 0: mean reco loss 3.5456, KL loss 2.2271, Regul loss 387.6048 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 24 - 976.42 sec]: train loss reco 3.507 kl 2.229, val loss reco 3.553 kl 2.225 (mean / batch) ###
+------- Early stopping for last 3 validation losses [5.8126054, 5.7948165, 5.778283]-------
+decreasing learning rate from 2.700e-05 to 8.100e-06
+saving best so far model with valid loss 3.553 and kl loss 2.225
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 19:47:9] Start of epoch 25
+Step 0: mean reco loss 3.5128, KL loss 2.2243, Regul loss 385.5463 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 25 - 993.10 sec]: train loss reco 3.480 kl 2.228, val loss reco 3.531 kl 2.225 (mean / batch) ###
+saving best so far model with valid loss 3.531 and kl loss 2.225
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 20:3:42] Start of epoch 26
+Step 0: mean reco loss 3.5080, KL loss 2.2245, Regul loss 384.8322 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 26 - 985.46 sec]: train loss reco 3.475 kl 2.228, val loss reco 3.528 kl 2.224 (mean / batch) ###
+saving best so far model with valid loss 3.528 and kl loss 2.224
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 20:20:8] Start of epoch 27
+Step 0: mean reco loss 3.5177, KL loss 2.2235, Regul loss 384.0330 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 27 - 975.12 sec]: train loss reco 3.469 kl 2.227, val loss reco 3.520 kl 2.224 (mean / batch) ###
+------- Early stopping for last 3 validation losses [5.755982, 5.7519503, 5.743868]-------
+decreasing learning rate from 8.100e-06 to 2.430e-06
+saving best so far model with valid loss 3.520 and kl loss 2.224
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 20:36:23] Start of epoch 28
+Step 0: mean reco loss 3.4969, KL loss 2.2230, Regul loss 383.2312 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 28 - 983.16 sec]: train loss reco 3.459 kl 2.226, val loss reco 3.513 kl 2.224 (mean / batch) ###
+saving best so far model with valid loss 3.513 and kl loss 2.224
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 20:52:47] Start of epoch 29
+Step 0: mean reco loss 3.4848, KL loss 2.2228, Regul loss 382.9673 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 29 - 975.63 sec]: train loss reco 3.457 kl 2.226, val loss reco 3.511 kl 2.223 (mean / batch) ###
+saving best so far model with valid loss 3.511 and kl loss 2.223
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 21:9:2] Start of epoch 30
+Step 0: mean reco loss 3.4822, KL loss 2.2222, Regul loss 382.6849 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 30 - 980.70 sec]: train loss reco 3.455 kl 2.226, val loss reco 3.508 kl 2.223 (mean / batch) ###
+------- Early stopping for last 3 validation losses [5.7364397, 5.7343917, 5.731142]-------
+decreasing learning rate from 2.430e-06 to 7.290e-07
+saving best so far model with valid loss 3.508 and kl loss 2.223
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 21:25:23] Start of epoch 31
+Step 0: mean reco loss 3.5075, KL loss 2.2220, Regul loss 382.3984 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 31 - 962.47 sec]: train loss reco 3.452 kl 2.225, val loss reco 3.507 kl 2.223 (mean / batch) ###
+saving best so far model with valid loss 3.507 and kl loss 2.223
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 21:41:26] Start of epoch 32
+Step 0: mean reco loss 3.4796, KL loss 2.2218, Regul loss 382.3090 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 32 - 961.32 sec]: train loss reco 3.452 kl 2.225, val loss reco 3.506 kl 2.223 (mean / batch) ###
+saving best so far model with valid loss 3.506 and kl loss 2.223
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 21:57:27] Start of epoch 33
+Step 0: mean reco loss 3.4793, KL loss 2.2217, Regul loss 382.2177 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 33 - 972.25 sec]: train loss reco 3.451 kl 2.225, val loss reco 3.506 kl 2.222 (mean / batch) ###
+------- Early stopping for last 3 validation losses [5.729252, 5.728578, 5.7279835]-------
+decreasing learning rate from 7.290e-07 to 2.187e-07
+saving best so far model with valid loss 3.506 and kl loss 2.222
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 22:13:40] Start of epoch 34
+Step 0: mean reco loss 3.4857, KL loss 2.2215, Regul loss 382.1245 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 34 - 961.97 sec]: train loss reco 3.450 kl 2.225, val loss reco 3.505 kl 2.222 (mean / batch) ###
+saving best so far model with valid loss 3.505 and kl loss 2.222
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 22:29:42] Start of epoch 35
+Step 0: mean reco loss 3.4901, KL loss 2.2215, Regul loss 382.0967 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 35 - 959.68 sec]: train loss reco 3.449 kl 2.225, val loss reco 3.505 kl 2.222 (mean / batch) ###
+saving best so far model with valid loss 3.505 and kl loss 2.222
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 22:45:41] Start of epoch 36
+Step 0: mean reco loss 3.4938, KL loss 2.2215, Regul loss 382.0680 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 36 - 965.31 sec]: train loss reco 3.449 kl 2.225, val loss reco 3.505 kl 2.222 (mean / batch) ###
+------- Early stopping for last 3 validation losses [5.7271957, 5.7268906, 5.726719]-------
+decreasing learning rate from 2.187e-07 to 6.561e-08
+saving best so far model with valid loss 3.505 and kl loss 2.222
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 23:1:47] Start of epoch 37
+Step 0: mean reco loss 3.4747, KL loss 2.2214, Regul loss 382.0393 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 37 - 966.75 sec]: train loss reco 3.449 kl 2.225, val loss reco 3.503 kl 2.222 (mean / batch) ###
+saving best so far model with valid loss 3.503 and kl loss 2.222
+saving model to /work/abal/CASE/VAE_models/run_12345/best_so_far
+
+### [16.12 23:17:54] Start of epoch 38
+Step 0: mean reco loss 3.4982, KL loss 2.2214, Regul loss 382.0305 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 38 - 956.61 sec]: train loss reco 3.449 kl 2.225, val loss reco 3.504 kl 2.222 (mean / batch) ###
+
+### [16.12 23:33:50] Start of epoch 39
+Step 0: mean reco loss 3.5022, KL loss 2.2214, Regul loss 382.0220 (in one batch)
+Seen so far: 1024 samples
+[DataGenerator]: __call__() yielded 1919927 samples
+### [Epoch 39 - 969.32 sec]: train loss reco 3.449 kl 2.225, val loss reco 3.504 kl 2.222 (mean / batch) ###
+------- Early stopping for last 3 validation losses [5.725539, 5.726408, 5.7266116]-------
+!!! stopping training !!!
+saving model to /work/abal/CASE/VAE_models/run_12345
