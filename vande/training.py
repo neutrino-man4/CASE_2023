@@ -176,7 +176,7 @@ class Trainer():
                 print('saving best so far model with valid loss {:.3f} and kl loss {:.3f}'.format(validation_loss_reco, validation_loss_kl))
                 vae.save(os.path.join(model_dir, 'best_so_far'))
         return losses_reco, losses_valid
-
+        
 
 # plot training results
 def plot_training_results(losses_train, losses_valid, fig_dir, plot_suffix=''):

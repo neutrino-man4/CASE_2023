@@ -13,7 +13,7 @@ class SamplePathDirFactory():
         self.base_dir = path_dict['base_dir']
         self.sample_dir = path_dict['sample_dir']
         self.sample_files = path_dict['file_names']
-
+        self.result_dir = path_dict['base_dir_results']
     def update_base_path(self, repl_dict):
         self.base_dir = utfu.multi_replace(self.base_dir, repl_dict)
         return self

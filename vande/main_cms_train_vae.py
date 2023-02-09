@@ -25,6 +25,9 @@ import random
 from loguru import logger
 import sys
 import argparse
+import json
+
+import pathlib
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-b","--batchsize",type=int,default=1024,help="Set Batch Size")
@@ -69,6 +72,9 @@ params = Parameters(run_n=seed,
 experiment = expe.Experiment(params.run_n).setup(model_dir=True, fig_dir=True)
 paths = safa.SamplePathDirFactory(sdi.path_dict)
 
+with open(os.path.join(experiment.model_analysis_dir,"params.json"),'w+') as f:
+    print(f"Dumping model parameters to JSON file")
+    json.dump(params._asdict(),f,indent=4)    
 #logger.add(f"{experiment.model_dir}/logfile.txt")
 
 #

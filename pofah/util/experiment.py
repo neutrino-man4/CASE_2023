@@ -16,7 +16,7 @@ class Experiment():
         self.model_analysis_dir = os.path.join(co.config['model_analysis_base_dir'], self.run_dir)
 
 
-    def setup(self, fig_dir=False, result_dir=False, tensorboard_dir=False, model_dir=False, model_dir_qr=False, analysis_dir=False, analysis_dir_qr=False, model_analysis_dir=False, model_comparison_dir=False):
+    def setup(self, fig_dir=False, result_dir=False, tensorboard_dir=False, model_dir=False, model_dir_qr=False, analysis_dir=False, analysis_dir_qr=False, model_analysis_dir=True, model_comparison_dir=False):
 
         if fig_dir:
             pathlib.Path(self.fig_dir).mkdir(parents=True, exist_ok=True)
@@ -56,9 +56,10 @@ class Experiment():
         if model_analysis_dir:
             self.model_analysis_dir_roc = os.path.join(self.model_analysis_dir, 'roc')
             self.model_analysis_dir_loss = os.path.join(self.model_analysis_dir, 'loss')
+            
             pathlib.Path(self.model_analysis_dir_roc).mkdir(parents=True, exist_ok=True)
             pathlib.Path(self.model_analysis_dir_loss).mkdir(parents=True, exist_ok=True)
-
+            
         if model_comparison_dir:
             self.model_comparison_dir = utfu.multi_replace(text=self.path_dict['model_comparison_dir'], repl_dict=self.param_dict)
             self.model_comparison_dir_roc = os.path.join(self.model_comparison_dir, 'roc')

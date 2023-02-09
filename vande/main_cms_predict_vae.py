@@ -18,7 +18,7 @@ import pofah.util.experiment as expe
 import training as train
 
 import sys
-
+import argparse
 # ********************************************************
 #               runtime params
 # ********************************************************
@@ -34,7 +34,7 @@ test_samples_Qstar_RS_W = ['QstarToQW_M_2000_mW_170',
                 'QstarToQW_M_5000_mW_170',
                 'QstarToQW_M_5000_mW_25',
                 'QstarToQW_M_5000_mW_400',
-                'QstarToQW_M_5000_mW_80',
+                'QstarToQW_M_5000_mW_80',    
                 'RSGravitonToGluonGluon_kMpl01_M_1000',
                 'RSGravitonToGluonGluon_kMpl01_M_2000',
                 'RSGravitonToGluonGluon_kMpl01_M_3000',
@@ -58,26 +58,25 @@ test_samples_Qstar_RS_W = ['QstarToQW_M_2000_mW_170',
                 'WpToBpT_Wp5000_Bp400_Top170_Zbt',
                 'WpToBpT_Wp5000_Bp80_Top170_Zbt',
                 'qcdSigTest',
-                'qcdSigMCOrig'
-                            ]
+                ]
 test_samples_MC_ORIG = ['qcdSigMCOrig']
 
 #test_samples = ['qcdSigQRTrain','qcdSigQRTest']
 #test_samples = ['qcdSigMCOrig']
 test_samples_X_TO_YY  = ['XToYYprimeTo4Q_MX2000_MY170_MYprime400_narrow',
-                # 'XToYYprimeTo4Q_MX2000_MY25_MYprime25_narrow',
-                # 'XToYYprimeTo4Q_MX2000_MY25_MYprime80_narrow',
-                # 'XToYYprimeTo4Q_MX2000_MY400_MYprime170_narrow',
-                # 'XToYYprimeTo4Q_MX2000_MY400_MYprime400_narrow',
-                # 'XToYYprimeTo4Q_MX2000_MY400_MYprime80_narrow',
-                # 'XToYYprimeTo4Q_MX2000_MY80_MYprime170_narrow',
-                # 'XToYYprimeTo4Q_MX2000_MY80_MYprime400_narrow',
-                # 'XToYYprimeTo4Q_MX2000_MY80_MYprime80_narrow',
-                # 'XToYYprimeTo4Q_MX3000_MY170_MYprime170_narrow',
-                # 'XToYYprimeTo4Q_MX3000_MY170_MYprime25_narrow',
-                # 'XToYYprimeTo4Q_MX3000_MY25_MYprime25_narrow',
-                # 'XToYYprimeTo4Q_MX3000_MY25_MYprime400_narrow',
-                # 'XToYYprimeTo4Q_MX3000_MY25_MYprime80_narrow',
+                'XToYYprimeTo4Q_MX2000_MY25_MYprime25_narrow',
+                'XToYYprimeTo4Q_MX2000_MY25_MYprime80_narrow',
+                'XToYYprimeTo4Q_MX2000_MY400_MYprime170_narrow',
+                'XToYYprimeTo4Q_MX2000_MY400_MYprime400_narrow',
+                'XToYYprimeTo4Q_MX2000_MY400_MYprime80_narrow',
+                'XToYYprimeTo4Q_MX2000_MY80_MYprime170_narrow',
+                'XToYYprimeTo4Q_MX2000_MY80_MYprime400_narrow',
+                'XToYYprimeTo4Q_MX2000_MY80_MYprime80_narrow',
+                'XToYYprimeTo4Q_MX3000_MY170_MYprime170_narrow',
+                'XToYYprimeTo4Q_MX3000_MY170_MYprime25_narrow',
+                'XToYYprimeTo4Q_MX3000_MY25_MYprime25_narrow',
+                'XToYYprimeTo4Q_MX3000_MY25_MYprime400_narrow',
+                'XToYYprimeTo4Q_MX3000_MY25_MYprime80_narrow',
                 'XToYYprimeTo4Q_MX3000_MY400_MYprime170_narrow',
                 'XToYYprimeTo4Q_MX3000_MY400_MYprime25_narrow',
                 'XToYYprimeTo4Q_MX3000_MY400_MYprime400_narrow',
@@ -103,9 +102,15 @@ test_samples_X_TO_YY  = ['XToYYprimeTo4Q_MX2000_MY170_MYprime400_narrow',
 #test_samples = ['qcdSig', 'GtoWW35na']
 #test_samples = ['qcdSideExt']
 #test_samples = ['gravitonSig']
-test_samples = test_samples_X_TO_YY#+ test_samples_MC_ORIG + test_samples_Qstar_RS_W 
+test_samples = test_samples_MC_ORIG + test_samples_X_TO_YY + test_samples_Qstar_RS_W 
 
-run_n = int(sys.argv[1])
+parser = argparse.ArgumentParser()
+parser.add_argument("-s","--seed",type=int,default=12345,help="Set seed")
+args = parser.parse_args()
+
+
+
+run_n = args.seed
 cuts = cuts.sideband_cuts if 'qcdSideExt' in test_samples else cuts.signalregion_cuts #{}
 
 experiment = expe.Experiment(run_n=run_n).setup(model_dir=True)

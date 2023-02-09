@@ -78,9 +78,13 @@ if 'roc' in do_analyses:
 
                         # I ADDED THIS BELOW
 			aucs,tpr,fpr = ra.plot_binned_ROC_loss_strategy(data[BG_sample], data[SIG_sample], mass_center, loss_ids, plot_name_suffix=plot_name_suffix+'_'+loss_name, fig_dir=experiment.model_analysis_dir_roc+"/binned/")
-			h5f = h5py.File(BG_sample+"_"+SIG_sample+".h5", 'w')
-			h5f.create_dataset('tpr', data=tpr)
-			h5f.create_dataset('fpr', data=fpr)
+			
+			subprocess.call("mkdir -p %s"%(experiment.model_analysis_dir_roc+"/tpr_fpr_data/"),shell=True)
+			h5f = h5py.File(experiment.model_analysis_dir_roc+"/tpr_fpr_data/"+BG_sample+"_"+SIG_sample+".h5", 'w') # store these datasets in the model analysis directory
+			tp=h5f.create_dataset('tpr', data=tpr)
+			fp=h5f.create_dataset('fpr', data=fpr)
+			tp.attrs['AUC']=aucs # added attribute for storing calculated AUC score
+			fp.attrs['AUC']=aucs # added attribute for storing calculated AUC score
 			h5f.close()
 
 

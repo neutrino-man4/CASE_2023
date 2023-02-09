@@ -37,7 +37,7 @@ SIG_samples = [
                 'WpToBpT_Wp3000_Bp170_Top170_ZbtReco',
                 'WpToBpT_Wp3000_Bp25_Top170_ZbtReco',
                 'WpToBpT_Wp3000_Bp400_Top170_ZbtReco',
-                'WpToBpT_Wp3000_Bp80_Top170_ZbtReco'
+                'WpToBpT_Wp3000_Bp80_Top170_ZbtReco',
                  'XToYYprimeTo4Q_MX3000_MY80_MYprime170_narrowReco',
 #                'WpToBpT_Wp5000_Bp170_Top170_ZbtReco',
 #                'WpToBpT_Wp5000_Bp25_Top170_ZbtReco',
