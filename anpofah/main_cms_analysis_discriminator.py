@@ -10,8 +10,8 @@ import h5py
 
 # setup analysis inputs
 #do_analyses = ['roc', 'loss', 'roc_qcd_sb_vs_sr', 'loss_qcd_sb_vs_sr', 'loss_combi']
-do_analyses = ['roc', 'roc_qcd_sb_vs_sr','loss']
-# do_analyses = ['roc', 'loss']
+do_analyses = ['roc', 'roc_qcd_sb_vs_sr']
+#do_analyses = ['loss']
 run_n = 98765
 fig_format = '.png'
 
@@ -35,10 +35,11 @@ mass_centers = samp.mass_centers
 plot_name_suffix = BG_sample + '_vs_sig' 
 
 
-SIG_samples = ['XToYYprimeTo4Q_MX3000_MY80_MYprime170_narrowReco',\
+#SIG_samples = ['XToYYprimeTo4Q_MX3000_MY80_MYprime170_narrowReco',\
 	#'XToYYprimeTo4Q_MX3000_MY170_MYprime25_narrowReco',\
      #           'XToYYprimeTo4Q_MX3000_MY25_MYprime25_narrowReco'
-	]
+#	]
+
 mass_centers = [3000]*len(SIG_samples)
 
 #SIG_samples = SIG_samples[:2]
@@ -92,8 +93,8 @@ if 'roc_qcd_mixed_vs_orig' in do_analyses:
 # *****************************************
 if 'loss' in do_analyses:
 	# plot loss distribution for qcd sig vs signals
-	saan.analyze_feature(data, 'j1TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_QStar_samples, plot_name='loss_SR_QStar_TotalJ1_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
-	saan.analyze_feature(data, 'j2TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_QStar_samples, plot_name='loss_SR_QStar_TotalJ2_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	# saan.analyze_feature(data, 'j1TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_QStar_samples, plot_name='loss_SR_QStar_TotalJ1_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	# saan.analyze_feature(data, 'j2TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_QStar_samples, plot_name='loss_SR_QStar_TotalJ2_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
 	saan.analyze_feature(data, 'j1TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_Graviton_samples, plot_name='loss_SR_Graviton_TotalJ1_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
 	saan.analyze_feature(data, 'j2TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_Graviton_samples, plot_name='loss_SR_Graviton_TotalJ2_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
 	saan.analyze_feature(data, 'j1TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_Wkk_samples, plot_name='loss_SR_Wkk_TotalJ1_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
