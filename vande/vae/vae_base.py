@@ -79,6 +79,9 @@ class VAE(ABC):
         with h5py.File(os.path.join(path,'model_params.h5'),'w') as f:
             ds = f.create_group('params')
             ds.attrs['beta'] = self.params.beta
+            ds.attrs['batch_size'] = self.params.batch_n # Added batch size to the attributes 
+
+            
 
     @classmethod
     def load(cls, path, custom_objects={}):
