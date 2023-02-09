@@ -118,7 +118,7 @@ def plot_bg_vs_sig(data, bins=100, xlabel='x', ylabel='num frac', title='histogr
             df = pd.DataFrame.from_dict(tmp_dict)
             csvname = "%s_%s.csv"%(title,legend[i])
             csvname = csvname.replace(" ","")
-            df.to_csv("/data/t3home000/bmaier/%s"%csvname)
+            df.to_csv("/work/abal/CASE/csv/%s"%csvname)
 
     if xlim:
         plt.xlim(xlim)
