@@ -1,4 +1,4 @@
-# vande
+# VANDE
 Variational Autoencoding for Anomaly Detection
 
 ### setup
@@ -25,3 +25,15 @@ main_predict_particle_vae.py
 parameters
 - run_n ... experiment number
 - cartesian ... True/False: constituents coordinates (if False: cylindrical)
+
+## Main CMS VAE
+
+### Training
+```
+python3 main_cms_train_vae.py -s run_n -b batch_sz
+```
+Parameters:
+- run_n: Experiment number, used as random seed
+- batch_sz: Batch size
+
+The VAE is trained on sideband jets which have been sampled in the Signal Region. The trained model is saved to the path specified in `pofah/experiment_dict.py`
