@@ -19,6 +19,7 @@ import training as train
 
 import sys
 import argparse
+import json
 # ********************************************************
 #               runtime params
 # ********************************************************
@@ -114,8 +115,11 @@ run_n = args.seed
 cuts = cuts.sideband_cuts if 'qcdSideExt' in test_samples else cuts.signalregion_cuts #{}
 
 experiment = expe.Experiment(run_n=run_n).setup(model_dir=True)
-batch_n = 1024
+#batch_n = 1024
 
+with open(experiment.model_analysis_dir_roc+"/tpr_fpr_data/params.json") as json_file: # Load parameters from JSON file
+    params=json.load(json_file)
+    batch_n=int(params['batch_n'])
 
 print(os.path.join(experiment.model_dir, 'best_so_far'))	
 # ********************************************
