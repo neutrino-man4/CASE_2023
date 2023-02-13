@@ -104,7 +104,7 @@ test_samples_X_TO_YY  = ['XToYYprimeTo4Q_MX2000_MY170_MYprime400_narrow',
 #test_samples = ['qcdSideExt']
 #test_samples = ['gravitonSig']
 test_samples = test_samples_MC_ORIG + test_samples_X_TO_YY + test_samples_Qstar_RS_W 
-
+#test_samples = test_samples_X_TO_YY
 parser = argparse.ArgumentParser()
 parser.add_argument("-s","--seed",type=int,default=12345,help="Set seed")
 args = parser.parse_args()
@@ -117,7 +117,7 @@ cuts = cuts.sideband_cuts if 'qcdSideExt' in test_samples else cuts.signalregion
 experiment = expe.Experiment(run_n=run_n).setup(model_dir=True)
 #batch_n = 1024
 
-with open(experiment.model_analysis_dir_roc+"/tpr_fpr_data/params.json") as json_file: # Load parameters from JSON file
+with open(experiment.model_analysis_dir+"/params.json") as json_file: # Load parameters from JSON file
     params=json.load(json_file)
     batch_n=int(params['batch_n'])
 
@@ -131,8 +131,9 @@ print('beta factor: ', vae.beta)
 loss_fn = losses.threeD_loss
 
 
-print(sdi.path_dict)
-print(sdi.path_dict['sample_names'])
+#print(sdi.path_dict)
+#print(sdi.path_dict['sample_names'])  
+
 input_paths = sf.SamplePathDirFactory(sdi.path_dict)
 print(input_paths)
 result_paths = sf.SamplePathDirFactory(sdr.path_dict).update_base_path({'$run$': experiment.run_dir})
@@ -178,7 +179,7 @@ for sample_id in test_samples:
         # *******************************************************
         
         print("HEREEE")
-        print(sdi.path_dict['sample_names'])
+        #print(sdi.path_dict['sample_names'])
         print(sample_id)
         print('predicting {}'.format(sdi.path_dict['sample_names'][sample_id]))
         reco_j1, loss_j1_reco, loss_j1_kl, orig_j1 = train.predict(vae.model, loss_fn, test_j1_ds)
@@ -287,9 +288,10 @@ for sample_id in test_samples:
         # *******************************************************
         #               write predicted data
         # *******************************************************
-        print(sdr.path_dict['sample_names'])
+        #print(sdr.path_dict['sample_names'])
+        
         print('writing results for {} to {}'.format(sdr.path_dict['sample_names'][reco_sample.name], os.path.join(result_paths.sample_dir_path(reco_sample.name), file_name)))
-
+        print('\n __________________________- \n')
         #reco_sample.dump(os.path.join(result_paths.sample_dir_path(reco_sample.name, mkdir=True), file_name))
         reco_sample.dump_with_orig(os.path.join(result_paths.sample_dir_path(reco_sample.name, mkdir=True), file_name))
 

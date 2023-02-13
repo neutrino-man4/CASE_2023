@@ -38,3 +38,4 @@ Parameters:
 
 The VAE is trained on sideband jets which have been sampled in the Signal Region. The best trained model is saved at the path specified by `model_dir` in `pofah/experiment_dict.py` and its hyperparameters can be found in the `model_analysis_dir/params.json` file. 
 
+ 
