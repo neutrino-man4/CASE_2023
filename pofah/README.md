@@ -14,4 +14,4 @@ These paths are stored as key-value pairs in the form of Python dictionaries pre
     - saving trained model: `model_dir`
     - rest should be self-explanatory. 
 
-The necessary directories for each run of the VAE are created by the `/util/experiment.py` script. In each script, you'll find an object of the form `experiment = expe.Experiment(model_dir=True,..)`. This calls the `Experiment` module within this class that creates the `model_dir` whose path is in the definition. All other directories can likewise be created, the possible options can be found in the `experiment.py` script as mentioned above. 
+The necessary directories for each run of the VAE are created by the `/util/experiment.py` script. In the scripts you encounter in `vande/`, you'll find an object of the form `experiment = expe.Experiment(model_dir=True,..)` somewhere in the code. This initializes the `Experiment` module within this class, which then creates the `model_dir` whose path is in the definition. All other required directories can likewise be created, the possible options can be found in the `experiment.py` script mentioned above. Go and take a look!
