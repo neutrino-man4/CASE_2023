@@ -5,14 +5,25 @@ import anpofah.model_analysis.roc_analysis as ra
 import anpofah.sample_analysis.sample_analysis as saan
 import dadrah.selection.loss_strategy as lost
 import anpofah.util.sample_names as samp
+import pofah.util.config as co
+import pdb
 import subprocess
 import h5py
+import argparse
+import json
+import os
+import csv
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-s","--seed",type=int,default=12345,help="Set seed")
+args = parser.parse_args()
+run_n = args.seed
 
 # setup analysis inputs
 #do_analyses = ['roc', 'loss', 'roc_qcd_sb_vs_sr', 'loss_qcd_sb_vs_sr', 'loss_combi']
-do_analyses = ['roc', 'roc_qcd_sb_vs_sr']
-#do_analyses = ['loss']
-run_n = 98765
+do_analyses = ['roc']
+#do_analyses = ['loss_qcd_sb_vs_sr']
+
 fig_format = '.png'
 
 # loss strategies
@@ -30,15 +41,17 @@ SIG_QStar_samples = samp.SIG_QStar_samples
 SIG_Graviton_samples = samp.SIG_Graviton_samples
 SIG_Wkk_samples = samp.SIG_Wkk_samples
 SIG_WpToBpT_samples = samp.SIG_WpToBpT_samples
-SIG_samples = samp.SIG_samples
 mass_centers = samp.mass_centers
 plot_name_suffix = BG_sample + '_vs_sig' 
 
 
-#SIG_samples = ['XToYYprimeTo4Q_MX3000_MY80_MYprime170_narrowReco',\
-	#'XToYYprimeTo4Q_MX3000_MY170_MYprime25_narrowReco',\
-     #           'XToYYprimeTo4Q_MX3000_MY25_MYprime25_narrowReco'
-#	]
+# SIG_samples = ['XToYYprimeTo4Q_MX3000_MY80_MYprime170_narrowReco',\
+# 	'XToYYprimeTo4Q_MX3000_MY170_MYprime25_narrowReco',\
+#                'XToYYprimeTo4Q_MX3000_MY25_MYprime25_narrowReco'
+# 	]
+
+#SIG_samples = SIG_Graviton_samples+SIG_Wkk_samples+SIG_WpToBpT_samples
+SIG_samples = samp.SIG_samples
 
 mass_centers = [3000]*len(SIG_samples)
 
@@ -56,6 +69,9 @@ print('Running analysis on experiment {}, plotting results to {}'.format(run_n, 
 # read in data
 data = sf.read_inputs_to_jet_sample_dict_from_dir(samp.all_samples, paths)
 
+with open(experiment.model_analysis_dir+"/params.json") as json_file: # Load parameters from JSON file
+    params=json.load(json_file)
+    batch_n=int(params['batch_n'])
 # *****************************************
 #					ROC
 # *****************************************
@@ -86,6 +102,12 @@ if 'roc' in do_analyses:
 			tp.attrs['AUC']=aucs # added attribute for storing calculated AUC score
 			fp.attrs['AUC']=aucs # added attribute for storing calculated AUC score
 			h5f.close()
+			# Write AUC vs batch size data to a csv file
+			auc_fields=[aucs[0],batch_n,run_n] # Place data in a list
+			filepath = os.path.join(experiment.model_analysis_dir_aucdata,f"{SIG_sample}.csv")
+			with open(filepath, 'a+') as f: # Open in append mode, create if it doesn't exist. 
+				writer = csv.writer(f)
+				writer.writerow(auc_fields)
 
 
 if 'roc_qcd_mixed_vs_orig' in do_analyses:
@@ -108,12 +130,12 @@ if 'loss' in do_analyses:
 	#saan.analyze_feature(data, 'j1KlLoss', sample_names=[samp.BG_SR_sample]+SIG_samples, plot_name='loss_SR_distr_KL1_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
 	#saan.analyze_feature(data, 'j2KlLoss', sample_names=[samp.BG_SR_sample]+SIG_samples, plot_name='loss_SR_distr_KL2_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
 
-#if 'loss_qcd_mixed_vs_orig' in do_analyses:
-	# plot loss distribution for qcd side vs qcd signal region
-#	saan.analyze_feature(data, 'j1TotalLoss', sample_names=[samp.BG_SB_sample, samp.BG_SR_sample], plot_name='loss_distr_TotalJ1_qcdSB_vs_qcdSR', fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
-#	saan.analyze_feature(data, 'j2TotalLoss', sample_names=[samp.BG_SB_sample, samp.BG_SR_sample], plot_name='loss_distr_TotalJ2_qcdSB_vs_qcdSR', fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
-#	saan.analyze_feature(data, 'j1KlLoss', sample_names=[samp.BG_SB_sample, samp.BG_SR_sample], plot_name='loss_distr_KL1_qcdSB_vs_qcdSR', fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
-#	saan.analyze_feature(data, 'j2KlLoss', sample_names=[samp.BG_SB_sample, samp.BG_SR_sample], plot_name='loss_distr_KL2_qcdSB_vs_qcdSR', fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+if 'loss_qcd_mixed_vs_orig' in do_analyses:
+	#splot loss distribution for qcd side vs qcd signal region
+	saan.analyze_feature(data, 'j1TotalLoss', sample_names=[samp.BG_SB_sample, samp.BG_SR_sample], plot_name='loss_distr_TotalJ1_qcdSB_vs_qcdSR', fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	saan.analyze_feature(data, 'j2TotalLoss', sample_names=[samp.BG_SB_sample, samp.BG_SR_sample], plot_name='loss_distr_TotalJ2_qcdSB_vs_qcdSR', fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	saan.analyze_feature(data, 'j1KlLoss', sample_names=[samp.BG_SB_sample, samp.BG_SR_sample], plot_name='loss_distr_KL1_qcdSB_vs_qcdSR', fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	saan.analyze_feature(data, 'j2KlLoss', sample_names=[samp.BG_SB_sample, samp.BG_SR_sample], plot_name='loss_distr_KL2_qcdSB_vs_qcdSR', fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
 
 
 # *****************************************
