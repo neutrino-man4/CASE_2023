@@ -14,6 +14,7 @@ class Experiment():
         self.fig_dir = os.path.join(co.config['fig_dir'], self.run_dir)
         self.fig_dir_event = os.path.join(self.fig_dir,'analysis_event')
         self.model_analysis_dir = os.path.join(co.config['model_analysis_base_dir'], self.run_dir)
+        self.model_analysis_dir_aucdata = os.path.join(co.config['model_analysis_base_dir'], 'auc_vs_batch/')
 
 
     def setup(self, fig_dir=False, result_dir=False, tensorboard_dir=False, model_dir=False, model_dir_qr=False, analysis_dir=False, analysis_dir_qr=False, model_analysis_dir=True, model_comparison_dir=False):
@@ -32,7 +33,7 @@ class Experiment():
         if model_dir:
             self.model_dir = utfu.multi_replace(text=self.path_dict['model_dir'], repl_dict=self.param_dict)
             pathlib.Path(self.model_dir).mkdir(parents=True, exist_ok=True)
-
+            
         # model paths QR
         if model_dir_qr:
             self.model_dir_qr = utfu.multi_replace(text=self.path_dict['model_dir_qr'], repl_dict={**self.param_dict, '$run$': str(self.run_n)}) # qr paths supporting run_x format where x is value instead of entire 'run_x' string
@@ -59,6 +60,7 @@ class Experiment():
             
             pathlib.Path(self.model_analysis_dir_roc).mkdir(parents=True, exist_ok=True)
             pathlib.Path(self.model_analysis_dir_loss).mkdir(parents=True, exist_ok=True)
+            pathlib.Path(self.model_analysis_dir_aucdata).mkdir(parents=True, exist_ok=True) # Create the auc vs batch size directory
             
         if model_comparison_dir:
             self.model_comparison_dir = utfu.multi_replace(text=self.path_dict['model_comparison_dir'], repl_dict=self.param_dict)

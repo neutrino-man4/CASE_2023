@@ -70,7 +70,7 @@ xsecs = [0.]
 sig_in_training_nums_arr = signal_contamin[(resonance, xsecs[0])] # TODO: adapt to multiple xsecs
 
 # quantiles
-quantiles = [0.3, 0.5, 0.7, 0.9, 0.95]
+quantiles = [0.3, 0.5, 0.7, 0.9, 0.99]
 #quantiles = [0.1, 0.3]
 regions = ["A","B","C","D","E"]
 #quantiles = [0.5]
@@ -151,7 +151,7 @@ for k in range(params.kfold):
             #qcd_test_sample = copy.deepcopy(qcd_test_sample_ini)
             
             sig_sample = copy.deepcopy(sig_sample_ini)
-            mixed_train_sample, mixed_valid_sample = dapr.inject_signal(qcd_train_sample, sig_sample_ini, sig_in_training_num, train_split = 0.66)
+            mixed_train_sample, mixed_valid_sample = dapr.inject_signal(qcd_train_sample, sig_sample_ini, sig_in_training_num, train_split = 0.9)
             
             if k == 0:
                 #sig_sample.dump(result_paths.sample_file_path(params.sig_sample_id))
@@ -199,27 +199,3 @@ for k in range(0,params.kfold):
 
     chunks[k].dump(result_paths.sample_file_path(params.qcd_sample_id, mkdir=True),fold=k)
 
-
-final_bkgsample = chunks[0]
-for k in range(1,params.kfold):
-    final_bkgsample = final_bkgsample.merge(chunks[k])
-
-final_bkgsample.dump(result_paths.sample_file_path(params.qcd_sample_id, mkdir=True))
-
-
-for i,s in enumerate(signal_samples):
-    for q,quantile in enumerate(quantiles):
-        inv_quant = round((1.-quantile),2)
-
-        counter = 0 
-        for l in range(0,params.kfold):
-    
-            tmpsig = qrwf.predict_VQR(discriminators["fold_%s"%str(l)], s, inv_quant, q, counter)
-            s = tmpsig
-
-            counter += 1
-    
-    signal_samples[i] = s
-
-for i,s in enumerate(signal_samples):
-    s.dump(result_paths.sample_file_path(params.sig_sample_id))

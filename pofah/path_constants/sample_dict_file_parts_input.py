@@ -8,8 +8,8 @@ update_dict = {
 
 	'sample_dir' : {
 		'qcdSig': 'mixed_sig_qcd/test',
-		'qcdSigTrain': 'run2_mixed_MC_sig_bkg/train',
-		'qcdSigTest': 'run2_mixed_MC_sig_bkg/test',
+		'qcdSigTrain': 'run2_mixed_sig_bkg/train',
+		'qcdSigTest': 'run2_mixed_sig_bkg/test', # Real data, not MC
 		'qcdSigTrainSB': 'run2_MC_side_bkg/train',
 		'qcdSigTestSB': 'run2_MC_side_bkg/test',
 		'qcdSigQR': 'run2_mixed_MC_sig_bkg_QR/test',

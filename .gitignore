@@ -136,3 +136,4 @@ dmypy.json
 h5test.py
 *.json
 *.sh
+h5plot.py

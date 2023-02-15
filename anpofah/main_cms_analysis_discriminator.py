@@ -21,7 +21,7 @@ run_n = args.seed
 
 # setup analysis inputs
 #do_analyses = ['roc', 'loss', 'roc_qcd_sb_vs_sr', 'loss_qcd_sb_vs_sr', 'loss_combi']
-do_analyses = ['roc']
+do_analyses = ['loss','loss_qcd_sb_vs_sr']
 #do_analyses = ['loss_qcd_sb_vs_sr']
 
 fig_format = '.png'
@@ -50,11 +50,24 @@ plot_name_suffix = BG_sample + '_vs_sig'
 #                'XToYYprimeTo4Q_MX3000_MY25_MYprime25_narrowReco'
 # 	]
 
-#SIG_samples = SIG_Graviton_samples+SIG_Wkk_samples+SIG_WpToBpT_samples
-SIG_samples = samp.SIG_samples
+SIG_samples = SIG_Graviton_samples+SIG_Wkk_samples+SIG_WpToBpT_samples
+#SIG_samples =
 
 mass_centers = [3000]*len(SIG_samples)
-
+mass_centers=[]
+for s in SIG_samples:
+	if '1000' in s:
+		mass_centers.append(1000)
+	elif '2000' in s:
+		mass_centers.append(2000)
+	elif '3000' in s:
+		mass_centers.append(3000)
+	elif '5000' in s:
+		mass_centers.append(5000)
+	else:
+		mass_centers.append(3000)
+print(len(mass_centers))
+print(len(SIG_samples))
 #SIG_samples = SIG_samples[:2]
 
 print(BG_sample)

@@ -55,12 +55,18 @@ SIG_QStar_samples = [
                 'QstarToQW_M_3000_mW_170Reco',
                 'QstarToQW_M_3000_mW_25Reco',
                 'QstarToQW_M_3000_mW_400Reco',
-                'QstarToQW_M_3000_mW_80Reco'
+                'QstarToQW_M_3000_mW_80Reco',
+                'QstarToQW_M_5000_mW_170Reco',
+                'QstarToQW_M_5000_mW_25Reco',
+                'QstarToQW_M_5000_mW_400Reco',
+                'QstarToQW_M_5000_mW_80Reco'
 ]
 
 SIG_Graviton_samples = [
+                #'RSGravitonToGluonGluon_kMpl01_M_1000Reco',
                 'RSGravitonToGluonGluon_kMpl01_M_2000Reco',
-                'RSGravitonToGluonGluon_kMpl01_M_3000Reco'
+                'RSGravitonToGluonGluon_kMpl01_M_3000Reco',
+                'RSGravitonToGluonGluon_kMpl01_M_5000Reco'
 ]
 
 
@@ -68,7 +74,9 @@ SIG_Wkk_samples = [
             'WkkToWRadionToWWW_M2000_Mr170Reco',
                 'WkkToWRadionToWWW_M2000_Mr400Reco',
                 'WkkToWRadionToWWW_M3000_Mr170Reco',
-                'WkkToWRadionToWWW_M3000_Mr400Reco'
+                'WkkToWRadionToWWW_M3000_Mr400Reco',
+                'WkkToWRadionToWWW_M5000_Mr170Reco',
+                'WkkToWRadionToWWW_M5000_Mr400Reco'
 ]
 
 SIG_WpToBpT_samples = [
@@ -79,17 +87,50 @@ SIG_WpToBpT_samples = [
                 'WpToBpT_Wp3000_Bp170_Top170_ZbtReco',
                 'WpToBpT_Wp3000_Bp25_Top170_ZbtReco',
                 'WpToBpT_Wp3000_Bp400_Top170_ZbtReco',
-                'WpToBpT_Wp3000_Bp80_Top170_ZbtReco'
+                'WpToBpT_Wp3000_Bp80_Top170_ZbtReco',
+                'WpToBpT_Wp5000_Bp170_Top170_ZbtReco',
+                'WpToBpT_Wp5000_Bp25_Top170_ZbtReco',
+                'WpToBpT_Wp5000_Bp400_Top170_ZbtReco',
+                'WpToBpT_Wp5000_Bp80_Top170_ZbtReco',
 ]
 
 SIG_XToYY_samples = [
-                'XToYYprimeTo4Q_MX3000_MY80_MYprime170_narrowReco',\
-                'XToYYprimeTo4Q_MX3000_MY170_MYprime25_narrowReco',\
-                'XToYYprimeTo4Q_MX3000_MY25_MYprime25_narrowReco'
+                'XToYYprimeTo4Q_MX2000_MY170_MYprime400_narrowReco',
+                'XToYYprimeTo4Q_MX2000_MY25_MYprime25_narrowReco',
+                'XToYYprimeTo4Q_MX2000_MY25_MYprime80_narrowReco',
+                'XToYYprimeTo4Q_MX2000_MY400_MYprime170_narrowReco',
+                'XToYYprimeTo4Q_MX2000_MY400_MYprime400_narrowReco',
+                'XToYYprimeTo4Q_MX2000_MY400_MYprime80_narrowReco',
+                'XToYYprimeTo4Q_MX2000_MY80_MYprime170_narrowReco',
+                'XToYYprimeTo4Q_MX2000_MY80_MYprime400_narrowReco',
+                'XToYYprimeTo4Q_MX2000_MY80_MYprime80_narrowReco',
+                'XToYYprimeTo4Q_MX3000_MY170_MYprime170_narrowReco',
+                'XToYYprimeTo4Q_MX3000_MY170_MYprime25_narrowReco',
+                'XToYYprimeTo4Q_MX3000_MY25_MYprime25_narrowReco',
+                'XToYYprimeTo4Q_MX3000_MY25_MYprime400_narrowReco',
+                'XToYYprimeTo4Q_MX3000_MY25_MYprime80_narrowReco',
+                'XToYYprimeTo4Q_MX3000_MY400_MYprime170_narrowReco',
+                'XToYYprimeTo4Q_MX3000_MY400_MYprime25_narrowReco',
+                'XToYYprimeTo4Q_MX3000_MY400_MYprime400_narrowReco',
+                'XToYYprimeTo4Q_MX3000_MY80_MYprime170_narrowReco',
+                'XToYYprimeTo4Q_MX3000_MY80_MYprime25_narrowReco',
+                'XToYYprimeTo4Q_MX3000_MY80_MYprime400_narrowReco',
+                'XToYYprimeTo4Q_MX5000_MY170_MYprime170_narrowReco',
+                'XToYYprimeTo4Q_MX5000_MY170_MYprime80_narrowReco',
+                'XToYYprimeTo4Q_MX5000_MY25_MYprime170_narrowReco',
+                'XToYYprimeTo4Q_MX5000_MY25_MYprime25_narrowReco',
+                'XToYYprimeTo4Q_MX5000_MY25_MYprime400_narrowReco',
+                'XToYYprimeTo4Q_MX5000_MY25_MYprime80_narrowReco',
+                'XToYYprimeTo4Q_MX5000_MY400_MYprime170_narrowReco',
+                'XToYYprimeTo4Q_MX5000_MY400_MYprime25_narrowReco',
+                'XToYYprimeTo4Q_MX5000_MY400_MYprime400_narrowReco',
+                'XToYYprimeTo4Q_MX5000_MY80_MYprime25_narrowReco',
+                'XToYYprimeTo4Q_MX5000_MY80_MYprime400_narrowReco'
+                    
 
 ]
 
 #all_samples = [BG_SR_sample] + [BG_SROrig_sample] + SIG_QStar_samples + SIG_Graviton_samples + SIG_Wkk_samples + SIG_WpToBpT_samples + SIG_XToYY_samples
-all_samples = [BG_SR_sample] + [BG_SROrig_sample] + SIG_XToYY_samples + SIG_QStar_samples + SIG_Graviton_samples + SIG_Wkk_samples + SIG_WpToBpT_samples
+all_samples = SIG_XToYY_samples + SIG_QStar_samples + SIG_Graviton_samples + SIG_Wkk_samples + SIG_WpToBpT_samples + [BG_SR_sample] + [BG_SROrig_sample] 
 
 #all_samples = [BG_SROrig_sample] + SIG_QStar_samples + SIG_Graviton_samples + SIG_Wkk_samples + SIG_WpToBpT_samples

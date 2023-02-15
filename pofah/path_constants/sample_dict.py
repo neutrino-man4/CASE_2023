@@ -137,7 +137,7 @@ path_dict = {
                 'XToYYprimeTo4Q_MX3000_MY170_MYprime25_narrowReco':'XToYYprimeTo4Q_MX3000_MY170_MYprime25_narrow reco',
                 'XToYYprimeTo4Q_MX3000_MY25_MYprime25_narrow':'XToYYprimeTo4Q_MX3000_MY25_MYprime25_narrow',
                 'XToYYprimeTo4Q_MX3000_MY25_MYprime25_narrowReco':'XToYYprimeTo4Q_MX3000_MY25_MYprime25_narrow reco',
-                'XToYYprimeTo4Q_MX3000_MY25_MYprime400':'XToYYprimeTo4Q_MX3000_MY25_MYprime400_narrow',
+                'XToYYprimeTo4Q_MX3000_MY25_MYprime400_narrow':'XToYYprimeTo4Q_MX3000_MY25_MYprime400_narrow',
                 'XToYYprimeTo4Q_MX3000_MY25_MYprime400_narrowReco':'XToYYprimeTo4Q_MX3000_MY25_MYprime400_narrow reco',
                 'XToYYprimeTo4Q_MX3000_MY25_MYprime80_narrow':'XToYYprimeTo4Q_MX3000_MY25_MYprime80_narrow',
                 'XToYYprimeTo4Q_MX3000_MY25_MYprime80_narrowReco':'XToYYprimeTo4Q_MX3000_MY25_MYprime80_narrow reco',

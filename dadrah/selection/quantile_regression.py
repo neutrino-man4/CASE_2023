@@ -21,12 +21,6 @@ def quantile_loss(quantile):
     @tf.function
     def loss(target, pred):
         err = target - pred
-        #tf.print("\n targett:", target, output_stream=sys.stdout)
-        #tf.print("\n targett shape:", target.shape, output_stream=sys.stdout)
-        #tf.print("\n pred:", pred, output_stream=sys.stdout)
-        #tf.print("\n pred shape:", pred.shape, output_stream=sys.stdout)
-        #tf.print("\n err:", err, output_stream=sys.stdout)
-        #tf.print("\n pred[0]:", pred[0], output_stream=sys.stdout)
 
         #tf.print("\n target:", target, output_stream=sys.stdout)
         #tf.print("\n pred:", pred, output_stream=sys.stdout)

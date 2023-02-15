@@ -24,7 +24,8 @@ import json
 #               runtime params
 # ********************************************************
 
-test_samples_Qstar_RS_W = ['QstarToQW_M_2000_mW_170',
+test_samples_Qstar_RS_W = [
+                'QstarToQW_M_2000_mW_170',
                 'QstarToQW_M_2000_mW_25',
                 'QstarToQW_M_2000_mW_400',
                 'QstarToQW_M_2000_mW_80',
@@ -105,6 +106,7 @@ test_samples_X_TO_YY  = ['XToYYprimeTo4Q_MX2000_MY170_MYprime400_narrow',
 #test_samples = ['gravitonSig']
 test_samples = test_samples_MC_ORIG + test_samples_X_TO_YY + test_samples_Qstar_RS_W 
 #test_samples = test_samples_X_TO_YY
+#test_samples = ['XToYYprimeTo4Q_MX3000_MY25_MYprime400_narrow']
 parser = argparse.ArgumentParser()
 parser.add_argument("-s","--seed",type=int,default=12345,help="Set seed")
 args = parser.parse_args()
