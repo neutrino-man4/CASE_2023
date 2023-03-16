@@ -51,7 +51,9 @@ set_seeds(seed)
 #       runtime params
 # ********************************************************
 
-Parameters = namedtuple('Parameters', 'run_n input_shape kernel_sz kernel_ini_n beta epochs train_total_n gen_part_n valid_total_n batch_n z_sz activation initializer learning_rate max_lr_decay lambda_reg')
+os.environ["CUDA_VISIBLE_DEVICES"]="2,3"
+
+Parameters = namedtuple('Parameters', 'run_n input_shape kernel_sz kernel_ini_n beta epochs train_total_n gen_part_n valid_total_n batch_n z_sz activation initializer learning_rate max_lr_decay lambda_reg,comments,data_or_MC')
 params = Parameters(run_n=seed, 
                     input_shape=(100,3),
                     kernel_sz=(1,3), 
@@ -67,7 +69,9 @@ params = Parameters(run_n=seed,
                     initializer='he_uniform',
                     learning_rate=0.001,
                     max_lr_decay=8, 
-                    lambda_reg=0.01) # 'L1L2'
+                    lambda_reg=0.01,
+                    comments='j1Pt bug fixed',
+                    data_or_MC='MC') # 'L1L2'
 
 experiment = expe.Experiment(params.run_n).setup(model_dir=True, fig_dir=True)
 paths = safa.SamplePathDirFactory(sdi.path_dict)
@@ -89,13 +93,14 @@ with open(os.path.join(experiment.model_analysis_dir,"params.json"),'w+') as f:
 
 # train (generator)
 print('>>> Preparing training dataset generator')
-data_train_generator = dage.CaseDataGenerator(path=paths.sample_dir_path('qcdSigTrain'), sample_part_n=params.gen_part_n, sample_max_n=params.train_total_n, **cuts.global_cuts) # generate 10 M jet samples
+print(paths.sample_dir_path('qcdSigMCTrain'))
+data_train_generator = dage.CaseDataGenerator(path=paths.sample_dir_path('qcdSigMCTrain'), sample_part_n=params.gen_part_n, sample_max_n=params.train_total_n, **cuts.global_cuts) # generate 10 M jet samples
 train_ds = tf.data.Dataset.from_generator(data_train_generator, output_types=tf.float32, output_shapes=params.input_shape).batch(params.batch_n, drop_remainder=True) # already shuffled
 
 # validation (full tensor, 1M events -> 2M samples)                                                                          
 print('>>> Preparing validation dataset')
-print(paths.sample_dir_path('qcdSigTest'))
-const_valid, _, features_valid, _, truth_valid = dare.CaseDataReader(path=paths.sample_dir_path('qcdSigTest')).read_events_from_dir(max_n=params.valid_total_n, **cuts.global_cuts)
+print(paths.sample_dir_path('qcdSigMCTest'))
+const_valid, _, features_valid, _, truth_valid = dare.CaseDataReader(path=paths.sample_dir_path('qcdSigMCTest')).read_events_from_dir(max_n=params.valid_total_n, **cuts.global_cuts)
 data_valid = dage.events_to_input_samples(const_valid, features_valid)
 valid_ds = tf.data.Dataset.from_tensor_slices(data_valid).batch(params.batch_n, drop_remainder=True)
 
@@ -130,3 +135,6 @@ losses_reco, losses_valid = trainer.train(vae=vae, loss_fn=loss_fn, train_ds=tra
 tra.plot_training_results(losses_reco, losses_valid, experiment.fig_dir)
 
 vae.save(path=experiment.model_dir)
+
+with open(os.path.join(experiment.model_dir,'completion_log.txt'),'w') as f:
+    from datetime import datetime; f.write(f'Training completed | {datetime.now()}')
