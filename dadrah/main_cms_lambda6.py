@@ -46,7 +46,7 @@ signal_contamin = { ('na', 0): [[0]]*4,
 resonance = 'na'
 #signals = ['GtoWW15'+resonance+'Reco', 'GtoWW25'+resonance+'Reco', 'GtoWW35'+resonance+'Reco', 'GtoWW45'+resonance+'Reco']
 signals = ['wkkSigReco']
-
+signals = ['WkkToWRadionToWWW_M2000_Mr170Reco']
 #masses = [1500, 2500, 3500, 4500]
 masses = [2500]
 
@@ -64,7 +64,7 @@ do_bump_hunt = False
 model_path_date = '20210423'
 
 Parameters = recordtype('Parameters','run_n, qcd_sample_id, qcd_ext_sample_id, qcd_train_sample_id, qcd_test_sample_id, sig_sample_id, strategy_id, epochs, read_n')
-params = Parameters(run_n=336, 
+params = Parameters(run_n=11157, 
                     qcd_sample_id='qcdSigReco', 
                     qcd_ext_sample_id='qcdSigExtReco',
                     qcd_train_sample_id='qcdSigAllTrainReco', 

@@ -77,7 +77,7 @@ regions = ["A","B","C","D","E"]
 
 # to run
 Parameters = recordtype('Parameters','run_n, qcd_sample_id, sig_sample_id, strategy_id, epochs, kfold, poly_order, read_n')
-params = Parameters(run_n=50005, 
+params = Parameters(run_n=98765, 
                     qcd_sample_id='qcdSigMCOrigReco',
                     sig_sample_id=None, # set sig id later in loop
                     strategy_id='rk5_05',
@@ -86,9 +86,9 @@ params = Parameters(run_n=50005,
                     poly_order=6,
                     read_n=int(1e8))
 
-result_dir = '/data/t3home000/bmaier/CASE/QR_results/analysis/vqr_run_%s/sig_WkkToWRadionToWWW_M3000_Mr170Reco/xsec_0/loss_rk5_05/qr_cuts/' % str(params.run_n) + '/maurizio_envelope'
+#result_dir = '/work/abal/CASE/QR_results/analysis/vqr_run_%s/sig_WkkToWRadionToWWW_M3000_Mr170Reco/xsec_0/loss_rk5_05/qr_cuts/' % str(params.run_n) + '/maurizio_envelope'
 
-subprocess.call("mkdir -p %s"%result_dir,shell=True)
+#subprocess.call("mkdir -p %s"%result_dir,shell=True)
 
 #****************************************#
 #           read in qcd data

@@ -7,12 +7,16 @@ def analyze_constituents(event_sample, clip_outlier=False, title_suffix='', plot
 	pu.plot_multihist(p2.transpose(), suptitle=' '.join([event_sample.name, 'particles J2', title_suffix]), titles=event_sample.particle_feature_names, clip_outlier=clip_outlier, plot_name='_'.join(['hist_const2', event_sample.name, plot_name_suffix]), fig_dir=fig_dir, fig_format=fig_format)
 
 
-def analyze_feature(sample_dict, feature_name, sample_names=None, title_suffix='', plot_name='plot', fig_dir=None, first_is_bg=True, clip_outlier=False, map_fun=None, legend_loc=1, ylogscale=True, xlim=None, normed=True, fig_format='.pdf'):
+def analyze_feature(sample_dict, feature_name, sample_names=None, title_suffix='', plot_name='plot', fig_dir=None, first_is_bg=True, clip_outlier=False, map_fun=None, legend_loc=1, ylogscale=True, xlim=None, normed=True, fig_format='.pdf',custom_legend=False):
 	''' for each sample in sample_dict: analyze feature of dijet 
 		if map_fun is given, process map_fun(feature) before analysis
 	'''
 	sample_names = sample_names or sample_dict.keys()
-	legend = [sample_dict[s].name for s in sample_names]
+	if bool(custom_legend):
+		legend = custom_legend
+	else:
+		legend = [sample_dict[s].name for s in sample_names]
+	
 	if map_fun:
 		feature = [map_fun(sample_dict[s]) for s in sample_names]
 	else:

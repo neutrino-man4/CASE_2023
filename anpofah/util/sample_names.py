@@ -1,5 +1,5 @@
-#BG_SR_sample = 'qcdSigTestReco'
-BG_SR_sample = 'qcdSigMCOrigReco'
+BG_SR_sample = 'qcdSigMCTestReco'
+#BG_SR_sample = 'qcdSigMCOrigReco'
 BG_SROrig_sample = 'qcdSigMCOrigReco'
 SIG_samples_br = []
 SIG_samples_na = []
@@ -131,6 +131,6 @@ SIG_XToYY_samples = [
 ]
 
 #all_samples = [BG_SR_sample] + [BG_SROrig_sample] + SIG_QStar_samples + SIG_Graviton_samples + SIG_Wkk_samples + SIG_WpToBpT_samples + SIG_XToYY_samples
-all_samples = SIG_XToYY_samples + SIG_QStar_samples + SIG_Graviton_samples + SIG_Wkk_samples + SIG_WpToBpT_samples + [BG_SR_sample] + [BG_SROrig_sample] 
+all_samples = [BG_SR_sample] + SIG_XToYY_samples + SIG_QStar_samples + SIG_Graviton_samples + SIG_Wkk_samples + SIG_WpToBpT_samples + [BG_SROrig_sample] 
 
 #all_samples = [BG_SROrig_sample] + SIG_QStar_samples + SIG_Graviton_samples + SIG_Wkk_samples + SIG_WpToBpT_samples

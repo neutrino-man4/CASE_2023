@@ -6,7 +6,7 @@ import pofah.util.utility_fun as utfu
 def mask_training_cuts(constituents, features):
     ''' get mask for training cuts requiring a jet-pt > 200'''
     jetPt_cut = 200.
-    idx_j1Pt, idx_j2Pt = 1, 6
+    idx_j1Pt, idx_j2Pt = 2, 6 # 1,6 was an intentional bug AKA feature. Unfortunately we now get rid of it (22nd Feb 2023) 
     #print("################ Here")
     #print(features)
     #print(features[:, idx_j1Pt])

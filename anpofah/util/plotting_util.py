@@ -13,17 +13,18 @@ def subplots_rows_cols(n):
 
 
 def plot_hist(data, bins=100, xlabel='x', ylabel='num frac', title='histogram', plot_name='plot', fig_dir=None, legend=[], ylogscale=True, normed=True, ylim=None, legend_loc='best', xlim=None, clip_outlier=False, fig_format='.png'):
-    fig = plt.figure(figsize=(6, 4))
+    fig = plt.figure()
+    fig.set_size_inches(18,12)
     if clip_outlier:
         data = [dpr.clip_outlier(dat) for dat in data]
     counts, edges = plot_hist_on_axis(plt.gca(), data, bins=bins, xlabel=xlabel, ylabel=ylabel, title=title, legend=legend, ylogscale=ylogscale, normed=normed, ylim=ylim, xlim=xlim)
     if legend:
-        plt.legend(loc=legend_loc)
+        plt.legend(loc=legend_loc,fontsize=9)
     plt.tight_layout()
     if fig_dir is not None:
         fig.savefig(os.path.join(fig_dir, plot_name + fig_format))
     else:
-        plt.show();
+        plt.show()
     plt.close(fig)
     return counts, edges
 
@@ -95,7 +96,8 @@ def plot_bg_vs_sig(data, bins=100, xlabel='x', ylabel='num frac', title='histogr
     :param data: list/array of N elements where first element is assumed to be background and elements 2..N-1 assumed to be signal. all elements = array of length M
     '''
 
-    fig = plt.figure(figsize=(6, 4))
+    fig = plt.figure()
+    fig.set_size_inches(10.,7.5)
     alpha = 0.4
     histtype = 'stepfilled'
     if ylogscale:

@@ -53,19 +53,46 @@ class SamplePathDirFactory():
 def read_inputs_to_sample_dict_from_file(sample_ids, paths):
     data = OrderedDict()
     for sample_id in sample_ids:
-        data[sample_id] = js.JetSample.from_input_file(sample_id, read_fun(sample_id))
+        data[sample_id] = jesa.JetSample.from_input_file(sample_id, read_fun(sample_id))
     return data
 
-def read_inputs_to_sample_dict_from_dir(sample_ids, paths, cls, read_n=None, **cuts):
+def read_inputs_to_sample_dict_from_dir(sample_ids, paths, cls,custom_tag=None, read_n=None, **cuts):
     data = OrderedDict()
     for sample_id in sample_ids:
         print('reading ', paths.sample_dir_path(sample_id))
-        data[sample_id] = cls.from_input_dir(sample_id, paths.sample_dir_path(sample_id), read_n=read_n, **cuts)
+        if bool(custom_tag):
+            data[sample_id] = cls.from_input_dir(sample_id+'_'+custom_tag, paths.sample_dir_path(sample_id), read_n=read_n, **cuts)
+        else:
+            data[sample_id] = cls.from_input_dir(sample_id, paths.sample_dir_path(sample_id), read_n=read_n, **cuts)
     return data
 
+####
+'''
+ Each signal now should have 8 files, with different scale factors
+ The previous directory structure was of the form <signal_name>/file.h5
+ Now there are 6 files located within their individual directories, with the resulting filepath being of the form: <signal_name>/<tag>/file.h5
+ The method below takes these additional nested directories into account
+ '''
+
+def read_inputs_to_sample_dict_from_dir_with_JE_tags(sample_ids, paths, JE_tags, cls, read_n=None, **cuts):
+    data = OrderedDict()
+    for sample_id in sample_ids:
+        for tag in JE_tags:
+            print('reading ', os.path.join(paths.sample_dir_path(sample_id),tag))
+            try:
+                data[sample_id+f'_{tag}'] = cls.from_input_dir(sample_id+f'_{tag}', os.path.join(paths.sample_dir_path(sample_id),tag), read_n=read_n, **cuts)
+            except:
+                pass # in case the tag does not exist
+    return data
+
+#####
 def read_inputs_to_jet_sample_dict_from_dir(sample_ids, paths, read_n=None, **cuts):
     ''' read dictionary of JetSamples '''
     return read_inputs_to_sample_dict_from_dir(sample_ids, paths, jesa.JetSample, read_n=read_n, **cuts)
+
+def read_inputs_to_jet_sample_dict_from_dir_with_JE_tags(sample_ids, paths, JE_tags, read_n=None, **cuts):
+    ''' read dictionary of JetSamples '''
+    return read_inputs_to_sample_dict_from_dir_with_JE_tags(sample_ids, paths, JE_tags, jesa.JetSample, read_n=read_n, **cuts)
 
 def read_inputs_to_event_sample_dict_from_dir(sample_ids, paths, read_n=None, **cuts):
     ''' read dictionary of EventSamples '''

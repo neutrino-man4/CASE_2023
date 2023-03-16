@@ -4,18 +4,21 @@ import pofah.path_constants.sample_dict as sd
 path_dict = copy.deepcopy(sd.path_dict)
 
 update_dict = {
-	'base_dir' : '/work/bmaier/CASE/',
-
+	#'base_dir' : '/work/bmaier/CASE/', # 
+        'base_dir' : '/storage/9/abal/CASE/new_signals/', # Use this only if associated uncertainties/variations are required 
+                
 	'sample_dir' : {
 		'qcdSig': 'mixed_sig_qcd/test',
-		'qcdSigTrain': 'run2_mixed_sig_bkg/train',
-		'qcdSigTest': 'run2_mixed_sig_bkg/test', # Real data, not MC
+		'qcdSigDataTrain': 'run2_mixed_sig_bkg/train',
+		'qcdSigDataTest': 'run2_mixed_sig_bkg/test', # Real data, not MC
+		'qcdSigMCTrain': 'run2_mixed_MC_sig_bkg/train',
+		'qcdSigMCTest': 'run2_mixed_MC_sig_bkg/test', # sideband MC with signal region kinematics
 		'qcdSigTrainSB': 'run2_MC_side_bkg/train',
 		'qcdSigTestSB': 'run2_MC_side_bkg/test',
-		'qcdSigQR': 'run2_mixed_MC_sig_bkg_QR/test',
+		'qcdSigQR': 'run2_mixed_MC_sig_bkg_QR/test', 
 		'qcdSigQRTrain': 'run2_mixed_MC_sig_bkg_QR/train',
 		'qcdSigQRTest': 'run2_mixed_MC_sig_bkg_QR/test',
-		'qcdSigMCOrig': 'run2_orig_MC_sig_bkg/test',
+		'qcdSigMCOrig': 'run2_orig_MC_sig_bkg/test', # original MC, no sampling/mixing performed to match SR kinematics. 
                 'QstarToQW_M_2000_mW_170': 'QstarToQW_M_2000_mW_170',
                 'QstarToQW_M_2000_mW_25':'QstarToQW_M_2000_mW_25',
                 'QstarToQW_M_2000_mW_400':'QstarToQW_M_2000_mW_400',
@@ -26,8 +29,8 @@ update_dict = {
                 'QstarToQW_M_3000_mW_80':'QstarToQW_M_3000_mW_80',
                 'QstarToQW_M_5000_mW_170':'QstarToQW_M_5000_mW_170',
                 'QstarToQW_M_5000_mW_25':'QstarToQW_M_5000_mW_25',
-                'QstarToQW_M_5000_mW_400':'QstarToQW_M_3000_mW_400',
-                'QstarToQW_M_5000_mW_80':'QstarToQW_M_3000_mW_80',
+                'QstarToQW_M_5000_mW_400':'QstarToQW_M_5000_mW_400',
+                'QstarToQW_M_5000_mW_80':'QstarToQW_M_5000_mW_80',
                 'RSGravitonToGluonGluon_kMpl01_M_1000':'RSGravitonToGluonGluon_kMpl01_M_1000',
                 'RSGravitonToGluonGluon_kMpl01_M_2000':'RSGravitonToGluonGluon_kMpl01_M_2000',
                 'RSGravitonToGluonGluon_kMpl01_M_3000':'RSGravitonToGluonGluon_kMpl01_M_3000',
@@ -53,6 +56,7 @@ update_dict = {
                 'XToYYprimeTo4Q_MX2000_MY170_MYprime400_narrow':'XToYYprimeTo4Q_MX2000_MY170_MYprime400_narrow',
                 'XToYYprimeTo4Q_MX2000_MY25_MYprime25_narrow':'XToYYprimeTo4Q_MX2000_MY25_MYprime25_narrow',
                 'XToYYprimeTo4Q_MX2000_MY25_MYprime80_narrow':'XToYYprimeTo4Q_MX2000_MY25_MYprime80_narrow',
+                'XToYYprimeTo4Q_MX2000_MY400_MYprime25_narrow':'XToYYprimeTo4Q_MX2000_MY400_MYprime25_narrow',
                 'XToYYprimeTo4Q_MX2000_MY400_MYprime170_narrow':'XToYYprimeTo4Q_MX2000_MY400_MYprime170_narrow',
                 'XToYYprimeTo4Q_MX2000_MY400_MYprime400_narrow':'XToYYprimeTo4Q_MX2000_MY400_MYprime400_narrow',
                 'XToYYprimeTo4Q_MX2000_MY400_MYprime80_narrow':'XToYYprimeTo4Q_MX2000_MY400_MYprime80_narrow',
@@ -81,7 +85,12 @@ update_dict = {
                 'XToYYprimeTo4Q_MX5000_MY400_MYprime400_narrow':'XToYYprimeTo4Q_MX5000_MY400_MYprime400_narrow',
                 'XToYYprimeTo4Q_MX5000_MY80_MYprime25_narrow':'XToYYprimeTo4Q_MX5000_MY80_MYprime25_narrow',
                 'XToYYprimeTo4Q_MX5000_MY80_MYprime400_narrow':'XToYYprimeTo4Q_MX5000_MY80_MYprime400_narrow',
-                'gravitonSig': 'graviton_v2_akcluster_unnorm',
+                'YtoHH_Htott_Y2000_H400':'YtoHH_Htott_Y2000_H400',
+                'YtoHH_Htott_Y3000_H400':'YtoHH_Htott_Y3000_H400',
+                'YtoHH_Htott_Y5000_H400':'YtoHH_Htott_Y5000_H400',
+                'ZpToTpTp_Zp2000_Tp400' : 'ZpToTpTp_Zp2000_Tp400',
+                'ZpToTpTp_Zp3000_Tp400' : 'ZpToTpTp_Zp2000_Tp400',
+                'ZpToTpTp_Zp5000_Tp400' : 'ZpToTpTp_Zp2000_Tp400',
                 'wkkSig': 'wkk_v2_akcluster_unnorm',
                 'wpSig': 'wp_v2_akcluster_unnorm',
                 'bstarSig': 'bstar_v2_akcluster_unnorm',

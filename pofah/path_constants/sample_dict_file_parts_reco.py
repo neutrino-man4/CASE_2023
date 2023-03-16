@@ -13,7 +13,8 @@ update_dict = {
                 'qcdSideExtReco' : 'qcd_ext_sideband_RECO',
 		'qcdSigReco': 'qcd_sig_RECO',
 		'qcdSigMCReco': 'qcd_sig_MC_RECO',
-		'qcdSigTestReco': 'qcd_sig_Test_RECO',
+		'qcdSigDataTestReco': 'qcd_sig_data_test_RECO', # Real data, not MC
+		'qcdSigMCTestReco': 'qcd_sig_test_RECO', # MC Test data (with mixing to match SR kinematics)
 		'qcdSigMCOrigReco': 'qcd_sig_orig_RECO',
 		'qcdSigQRReco': 'qcd_sig_QR_RECO',
 		'qcdSigQRTrainReco': 'qcd_sig_Train_QR_RECO',
@@ -62,6 +63,7 @@ update_dict = {
                 'XToYYprimeTo4Q_MX2000_MY25_MYprime25_narrowReco':'XToYYprimeTo4Q_MX2000_MY25_MYprime25_narrow_RECO',
                 'XToYYprimeTo4Q_MX2000_MY25_MYprime80_narrowReco':'XToYYprimeTo4Q_MX2000_MY25_MYprime80_narrow_RECO',
                 'XToYYprimeTo4Q_MX2000_MY400_MYprime170_narrowReco':'XToYYprimeTo4Q_MX2000_MY400_MYprime170_narrow_RECO',
+                'XToYYprimeTo4Q_MX2000_MY400_MYprime25_narrowReco':'XToYYprimeTo4Q_MX2000_MY400_MYprime25_narrow_RECO',
                 'XToYYprimeTo4Q_MX2000_MY400_MYprime400_narrowReco':'XToYYprimeTo4Q_MX2000_MY400_MYprime400_narrow_RECO',
                 'XToYYprimeTo4Q_MX2000_MY400_MYprime80_narrowReco':'XToYYprimeTo4Q_MX2000_MY400_MYprime80_narrow_RECO',
                 'XToYYprimeTo4Q_MX2000_MY80_MYprime170_narrowReco':'XToYYprimeTo4Q_MX2000_MY80_MYprime170_narrow_RECO',
@@ -89,7 +91,12 @@ update_dict = {
                 'XToYYprimeTo4Q_MX5000_MY400_MYprime400_narrowReco':'XToYYprimeTo4Q_MX5000_MY400_MYprime400_narrow_RECO',
                 'XToYYprimeTo4Q_MX5000_MY80_MYprime25_narrowReco':'XToYYprimeTo4Q_MX5000_MY80_MYprime25_narrow_RECO',
                 'XToYYprimeTo4Q_MX5000_MY80_MYprime400_narrowReco':'XToYYprimeTo4Q_MX5000_MY80_MYprime400_narrow_RECO',
- 
+                'YtoHH_Htott_Y2000_H400Reco':'YtoHH_Htott_Y2000_H400_RECO',
+                'YtoHH_Htott_Y3000_H400Reco':'YtoHH_Htott_Y3000_H400_RECO',
+                'YtoHH_Htott_Y5000_H400Reco':'YtoHH_Htott_Y5000_H400_RECO',
+                'ZpToTpTp_Zp2000_Tp400Reco' : 'ZpToTpTp_Zp2000_Tp400_RECO',
+                'ZpToTpTp_Zp3000_Tp400Reco' : 'ZpToTpTp_Zp2000_Tp400_RECO',
+                'ZpToTpTp_Zp5000_Tp400Reco' : 'ZpToTpTp_Zp2000_Tp400_RECO',
 
                 # prepared train and test split data for QR training
                 #'qcdSigAllTrainReco': 'qcd_sqrtshatTeV_13TeV_PU40_NEW_ALL_Train_signalregion_parts',

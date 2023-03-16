@@ -20,12 +20,12 @@ print('tf version: ' + tf.__version__)
 #           set runtime params
 #****************************************#
 Parameters = namedtuple('Parameters','run_n, qcd_sample_id, quantile, strategy')
-params = Parameters(run_n=336, qcd_sample_id='qcdSigReco', quantile=0.9, strategy=lost.loss_strategy_dict['s5'])
+params = Parameters(run_n=98765, qcd_sample_id='qcdSigTestReco', quantile=0.9, strategy=lost.loss_strategy_dict['s5'])
 
 #****************************************#
 #           read in data
 #****************************************#
-experiment = ex.Experiment(params.run_n)
+experiment = ex.Experiment(params.run_n).setup(model_dir_qr=True,analysis_dir_qr=True)
 
 #print(sdfr.path_dict)
 
@@ -45,8 +45,8 @@ print('training on {} events, validating on {}'.format(len(qcd_train), len(qcd_v
 discriminator = disc.QRDiscriminator_KerasAPI(quantile=params.quantile, loss_strategy=params.strategy, batch_sz=256, epochs=30,  n_layers=5, n_nodes=50)
 losses_train, losses_valid = discriminator.fit(qcd_train, qcd_valid)
 print(discriminator.model.summary())
-train.plot_training_results(losses_train, losses_valid, '/home/bmaier/public_html/figs/case/kvae/qr/run_%s'%params.run_n)
-discriminator.save('models/model_q'+str(int(params.quantile*100))+'.h5')
+#train.plot_training_results(losses_train, losses_valid, '/home/bmaier/public_html/figs/case/kvae/qr/run_%s'%params.run_n)
+discriminator.save(os.path.join(experiment.model_dir_qr,'model_q'+str(int(params.quantile*100))+'.h5'))
 
-andi.analyze_discriminator_cut(discriminator, qcd_train, plot_name='discr_cut_qnt'+str(int(params.quantile*100)), fig_dir='/home/bmaier/public_html/figs/case/kvae/qr/run_%s'%params.run_n)
+andi.analyze_discriminator_cut(discriminator, qcd_train, plot_name='discr_cut_qnt'+str(int(params.quantile*100)), fig_dir=experiment.analysis_dir_qr_cuts)
 

@@ -7,7 +7,7 @@ import dadrah.selection.quantile_regression as qr
 import pofah.jet_sample as js
 import vande.training as train
 import vande.vae.layers as layers
-from keras.callbacks import LambdaCallback, Callback
+from tensorflow.keras.callbacks import LambdaCallback, Callback
 
 class GetWeights(Callback):
     # Keras callback which collects values of weights and biases at each epoch
