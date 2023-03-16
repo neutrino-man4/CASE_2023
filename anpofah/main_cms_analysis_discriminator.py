@@ -21,8 +21,8 @@ run_n = args.seed
 
 # setup analysis inputs
 #do_analyses = ['roc', 'loss', 'roc_qcd_sb_vs_sr', 'loss_qcd_sb_vs_sr', 'loss_combi']
-do_analyses = ['loss','loss_qcd_sb_vs_sr']
-#do_analyses = ['loss_qcd_sb_vs_sr']
+do_analyses = ['loss']
+do_analyses = ['loss_combi']
 
 fig_format = '.png'
 
@@ -41,6 +41,8 @@ SIG_QStar_samples = samp.SIG_QStar_samples
 SIG_Graviton_samples = samp.SIG_Graviton_samples
 SIG_Wkk_samples = samp.SIG_Wkk_samples
 SIG_WpToBpT_samples = samp.SIG_WpToBpT_samples
+SIG_XtoYY_samples = samp.SIG_XToYY_samples
+
 mass_centers = samp.mass_centers
 plot_name_suffix = BG_sample + '_vs_sig' 
 
@@ -82,9 +84,10 @@ print('Running analysis on experiment {}, plotting results to {}'.format(run_n, 
 # read in data
 data = sf.read_inputs_to_jet_sample_dict_from_dir(samp.all_samples, paths)
 
-with open(experiment.model_analysis_dir+"/params.json") as json_file: # Load parameters from JSON file
-    params=json.load(json_file)
-    batch_n=int(params['batch_n'])
+# with open(experiment.model_analysis_dir+"/params.json") as json_file: # Load parameters from JSON file
+#     params=json.load(json_file)
+#     batch_n=int(params['batch_n'])
+batch_n=256
 # *****************************************
 #					ROC
 # *****************************************
@@ -132,8 +135,10 @@ if 'roc_qcd_mixed_vs_orig' in do_analyses:
 # *****************************************
 if 'loss' in do_analyses:
 	# plot loss distribution for qcd sig vs signals
-	# saan.analyze_feature(data, 'j1TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_QStar_samples, plot_name='loss_SR_QStar_TotalJ1_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
-	# saan.analyze_feature(data, 'j2TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_QStar_samples, plot_name='loss_SR_QStar_TotalJ2_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	saan.analyze_feature(data, 'j1TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_QStar_samples, plot_name='loss_SR_QStar_TotalJ1_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	saan.analyze_feature(data, 'j2TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_QStar_samples, plot_name='loss_SR_QStar_TotalJ2_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	saan.analyze_feature(data, 'j1TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_XtoYY_samples, plot_name='loss_SR_XtoYY_TotalJ1_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+	saan.analyze_feature(data, 'j2TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_XtoYY_samples, plot_name='loss_SR_XtoYY_TotalJ2_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
 	saan.analyze_feature(data, 'j1TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_Graviton_samples, plot_name='loss_SR_Graviton_TotalJ1_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
 	saan.analyze_feature(data, 'j2TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_Graviton_samples, plot_name='loss_SR_Graviton_TotalJ2_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
 	saan.analyze_feature(data, 'j1TotalLoss', sample_names=[samp.BG_SR_sample]+SIG_Wkk_samples, plot_name='loss_SR_Wkk_TotalJ1_'+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
@@ -159,7 +164,18 @@ if 'loss_combi' in do_analyses:
 	for loss_id in loss_combi_ids:
 		loss_strategy = lost.loss_strategy_dict[loss_id]
 		# plot loss distribution for qcd mixed vs qcd original
-		saan.analyze_feature(data, loss_strategy.title_str, map_fun=loss_strategy, sample_names=[samp.BG_SR_sample, samp.BG_SROrig_sample], plot_name='loss_distr_'+loss_strategy.file_str+'_qcd_mixed_vs_orig', fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
-
+		try:
+			saan.analyze_feature(data, loss_strategy.title_str, map_fun=loss_strategy, sample_names=[samp.BG_SR_sample, samp.BG_SROrig_sample], plot_name='loss_distr_'+loss_strategy.file_str+'_qcd_mixed_vs_orig', fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+		except Exception as e:
+			print('Something went wrong in plotting SR vs SB. Here is the error message.')
+			print(e)
+		#saan.analyze_feature(data, loss_strategy.title_str, map_fun=loss_strategy, sample_names=[samp.BG_SR_sample]+ samp.SIG_Wkk_samples, plot_name='loss_distr_Wkk_'+loss_strategy.file_str+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+			
+		saan.analyze_feature(data, loss_strategy.title_str, map_fun=loss_strategy, sample_names=[samp.BG_SR_sample]+ samp.SIG_XToYY_samples[:9], plot_name='loss_distr_XtoYY_MX2000_'+loss_strategy.file_str+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+		saan.analyze_feature(data, loss_strategy.title_str, map_fun=loss_strategy, sample_names=[samp.BG_SR_sample]+ samp.SIG_XToYY_samples[9:20], plot_name='loss_distr_XtoYY_MX3000_'+loss_strategy.file_str+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+		saan.analyze_feature(data, loss_strategy.title_str, map_fun=loss_strategy, sample_names=[samp.BG_SR_sample]+ samp.SIG_XToYY_samples[20:], plot_name='loss_distr_XtoYY_MX5000_'+loss_strategy.file_str+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+		#saan.analyze_feature(data, loss_strategy.title_str, map_fun=loss_strategy, sample_names=[samp.BG_SR_sample]+ samp.SIG_QStar_samples, plot_name='loss_distr_QStar_'+loss_strategy.file_str+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+		#saan.analyze_feature(data, loss_strategy.title_str, map_fun=loss_strategy, sample_names=[samp.BG_SR_sample]+ samp.SIG_Graviton_samples, plot_name='loss_distr_QStar_'+loss_strategy.file_str+plot_name_suffix, fig_dir=experiment.model_analysis_dir_loss, clip_outlier=True, fig_format=fig_format)
+		
 
 
