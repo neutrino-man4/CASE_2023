@@ -85,6 +85,7 @@ def read_inputs_to_sample_dict_from_dir_with_JE_tags(sample_ids, paths, JE_tags,
                 pass # in case the tag does not exist
     return data
 
+
 #####
 def read_inputs_to_jet_sample_dict_from_dir(sample_ids, paths, read_n=None, **cuts):
     ''' read dictionary of JetSamples '''
