@@ -47,7 +47,7 @@ class JetSample():
         for sel in sel_cols:  # convert selection column to bool
             df[sel] = df[sel].astype(bool)
         return cls(name, df)
-
+    
     @classmethod
     def from_event_sample(cls, event_sample):
         jet_features = event_sample.get_event_features()
