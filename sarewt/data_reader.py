@@ -21,6 +21,7 @@ class DataReader():
         self.constituents_feature_names = 'particleFeatureNames'
         self.constituents_shape = (2, 100, 3)
         self.features_shape = (11,)
+        self.sysweights_key = ''
 
 
     def get_file_list(self):
@@ -32,6 +33,18 @@ class DataReader():
             flist += glob.glob(path + '/' + '*.h5')
         flist.sort()
         return flist
+
+    def get_file_list_depth1(self):
+        ''' return *sorted* recursive file-list in self.path '''
+        flist = []
+        for path, _, _ in os.walk(self.path, followlinks=True):
+            if "MAYBE_BROKEN" in path:
+                continue
+            flist += glob.glob(path + '/' + '*.h5')
+            break
+        flist.sort()
+        return flist
+
 
 
     def read_data_from_file(self, key, path=None):
@@ -217,7 +230,8 @@ class DataReader():
 
         features_concat = []
         n = 0
-        flist = self.get_file_list()
+        #flist = self.get_file_list()
+        flist = self.get_file_list_depth1()  #### NOTE : ONLY FOR DEPTH 1 NOW
         #print("FILELIST")
         #print(flist)
         for i_file, fname in enumerate(flist):
@@ -309,6 +323,9 @@ class CaseDataReader(DataReader):
         self.jet1_constituents_key = 'jet1_PFCands'
         self.jet2_constituents_key = 'jet2_PFCands'
         self.constituents_feature_names_val = ['Px', 'Py', 'Pz', 'E']
+        self.sysweights_key='sys_weights'
+        self.sysweights_val=['nom_weight', 'pdf_up', 'pdf_down', 'prefire_up', 'prefire_down', 'pileup_up', 'pileup_down', 'btag_up', 'btag_down', 
+    'PS_ISR_up', 'PS_ISR_down', 'PS_FSR_up', 'PS_FSR_down', 'F_up', 'F_down', 'R_up', 'R_down', 'RF_up', 'RF_down', 'top_ptrw_up', 'top_ptrw_down']
         #self.truth_label_key = 'truth_label'
 
     # TODO: how to exclude "test" file? (own get_file_list function?)
@@ -372,13 +389,26 @@ class CaseDataReader(DataReader):
             #print("WTF")
             return [constituents, features]
 
+    def read_weights_from_file(self):
+        #print(path)
+        with h5py.File(self.path,'r') as f:
+            #features = np.array(f.get(self.jet_features_key))
+            #print(self.jet_features_key)
+            #print(path)
+            weights = np.array(f[self.sysweights_key][()])
+            #print(features)
+            #print("WTF")
+            return weights
+
+
     def read_labels(self, key, path=None):
         ''' labels are not provided in CASE dataset '''
         if key == self.dijet_feature_names:
             return self.dijet_feature_names_val
         if key == self.constituents_feature_names:
             return self.constituents_feature_names_val
-
+        if key == self.sysweights_key:
+            return self.sysweights_val
 
     def read_events_from_dir(self, max_n=1e9):
         '''
